@@ -1,0 +1,139 @@
+\documentclass[12pt,twocolumn]{article}
+
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{lipsum}
+
+\usepackage[a4paper,top=3.5cm,bottom=2.5cm,left=3cm,right=3cm]{geometry}
+
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{0pt}
+
+\makeatletter
+\renewcommand{\maketitle}{
+  \begin{center}
+    {\large\bfseries \@title \par}
+    \vskip 12pt
+    {\normalsize\bfseries \@author \par}
+    \vskip 12pt
+    {\normalsize \@date \par}
+    \vskip 12pt
+  \end{center}
+}
+\makeatother
+
+\newenvironment{resumo}{
+  \begin{quote}
+  \noindent\textbf{Resumo. }
+}{
+  \end{quote}
+}
+
+\newenvironment{abstractSBC}{
+  \begin{quote}
+  \noindent\textbf{Abstract. }
+}{
+  \end{quote}
+}
+
+\title{Acessibilidade em Jogos Colaborativos}
+
+\author{
+  André Luis Carvalho da Silva,
+  Breno Gonzaga de Carvalho,
+  Antônio Avelino da Silva ,
+  Evynne Ferreira Avelino
+}
+
+\date{
+{\normalsize
+Universidade Federal do Ceará (UFC) — Campus Quixadá\[6pt]
+\texttt{andreluis90@alu.ufc.br, brenogonzaga96@alu.ufc.br, email3@alu.ufc.br}
+}
+}
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract}
+  This meta-paper describes the style to be used in articles and short papers
+  for SBC conferences. For papers in English, you should add just an abstract
+  while for the papers in Portuguese, we also ask for an abstract in
+  Portuguese (``resumo''). In both cases, abstracts should not have more than
+  10 lines and must be in the first page of the paper.
+\end{abstract}
+     
+\begin{resumo}
+  Este meta-artigo descreve o estilo a ser usado na confecção de artigos e
+  resumos de artigos para publicação nos anais das conferências organizadas
+  pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos
+  escritos em português. Artigos em inglês deverão apresentar apenas abstract.
+  Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract) 
+  não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira
+  página do artigo.
+\end{resumo}
+
+
+\section{Introdução}
+
+A acessibilidade em jogos digitais tem se consolidado como um campo essencial dentro da Interação Humano Computador, refletindo esforços para garantir que pessoas com deficiência possam participar plenamente de experiências lúdicas, sociais e colaborativas. Pesquisas recentes apontam que barreiras de acesso, como interfaces predominantemente visuais, ausência de \textit{feedback} multimodal e incompatibilidades com tecnologias assistivas, continuam limitando o engajamento de jogadores com deficiência visual \cite{bolesnikov2022understanding}. Esses obstáculos interferem tanto na percepção de inclusão quanto na autonomia durante a interação com diferentes gêneros de jogos.
+
+Paralelo a isso, a literatura em acessibilidade evidencia avanços significativos no desenvolvimento de jogos com múltiplas opções adaptativas, buscando atender a perfis variados de jogadores. Estudos destacam que a implementação de mecanismos como leitores de tela integrados, navegação auditiva, pistas sonoras espacializadas e personalização de dificuldade pode elevar substancialmente a experiência emocional e o senso de presença de usuários com necessidades específicas \cite{aguado2020accessibility}, \cite{holloway2019disability}. Além disso, há um crescente interesse em explorar plataformas de criação, como Scratch e Unity, para o desenvolvimento de protótipos colaborativos acessíveis, ampliando oportunidades de experimentação e pesquisa aplicada \cite{dudley2023inclusive}.
+
+O estado da arte mostra ainda que jogos colaborativos apresentam desafios particulares: a coordenação entre participantes depende da clareza informacional, do equilíbrio de responsabilidades e da existência de canais alternativos de comunicação. Em jogos não projetados com acessibilidade de origem, essas dimensões frequentemente se tornam fontes de frustração, desigualdade participativa e ruptura da experiência coletiva \cite{bolesnikov2022understanding}. Assim, investigar como a acessibilidade é percebida na prática torna-se fundamental para compreender não apenas o desempenho técnico das adaptações, mas também seu impacto social e emocional.
+
+Diante desse cenário, este trabalho tem como objetivo realizar uma avaliação de usabilidade para examinar como sistemas colaborativos são percebidos no jogo \textit{The Vale: Shadow of the Crown}, um título projetado especificamente para pessoas cegas ou com baixa visão. Para isso, serão analisados comentários relevantes publicados por jogadores na plataforma \textit{Steam} e em outros ambientes onde o jogo está disponível, buscando identificar padrões relacionados à percepção de acessibilidade, à colaboração mediada por tecnologias assistivas, ao fluxo de interação e à experiência emocional durante o jogo. Essa abordagem possibilita compreender a recepção do público e identificar aspectos de design que favorecem ou prejudicam a inclusão.
+
+ Ao investigar essas avaliações espontâneas, o estudo contribui para a literatura ao relacionar práticas de design acessível com indicadores reais de usabilidade, inclusão e colaboração. Os resultados pretendem apoiar o desenvolvimento de futuros jogos acessíveis e orientar diretrizes para projetos que busquem integrar colaboração, acessibilidade e experiência emocional de forma consistente.
+
+\section{Sistemas Colaborativos e a Experiência Auditiva em \textit{The Vale}}
+
+A análise da acessibilidade em jogos auditivos como \textit{The Vale: Shadow of the Crown} pode ser ampliada quando observada sob a perspectiva dos sistemas colaborativos, especialmente porque a experiência proposta pelo jogo depende da coordenação entre mecanismos de navegação, pistas sonoras e a interpretação ativa do jogador. Embora \textit{The Vale} seja estruturado como uma campanha para um único jogador, sua lógica sensorial e suas demandas cognitivas dialogam diretamente com conceitos centrais do \textit{Computer-Supported Cooperative Work} (CSCW). Nesse contexto, o jogador precisa articular suas ações com um sistema que atua como parceiro informacional, mediando fluxo, pistas, obstáculos e objetivos. Assim, a cooperação não ocorre entre múltiplos participantes, mas entre jogador e sistema, em uma dinâmica na qual a clareza informacional é determinante para a experiência.
+
+O conceito de \textit{groupware} também se mostra relevante ao considerar que muitos mecanismos do jogo funcionam como ferramentas colaborativas projetadas para sustentar a tomada de decisão guiada pelo som. Elementos como a espacialização sonora, os sinais contextuais que indicam direção e distância de inimigos, e o guia narrativo que fornece instruções em tempo real atuam como módulos cooperativos que ampliam a percepção ambiental. Embora tais recursos não constituam um ambiente colaborativo clássico entre múltiplos usuários, eles servem como infraestrutura que possibilita a navegação e a construção de um espaço mental acessível para jogadores cegos ou com baixa visão.
+
+A noção de \textit{awareness}, entendida como consciência situacional, assume papel central em \textit{The Vale}, uma vez que toda a composição espacial do jogo é transmitida exclusivamente por áudio. A manutenção dessa consciência depende da precisão das pistas sonoras fornecidas pelo sistema, permitindo ao jogador acompanhar ações, intenções e mudanças no ambiente. Quando a trilha informacional é consistente, preserva-se a autonomia e o senso de presença; quando falha, surgem dificuldades semelhantes às observadas em sistemas colaborativos nos quais o \textit{awareness} é insuficiente.
+
+A \textit{coordenação} entre jogador e sistema se manifesta tanto na navegação quanto nos combates. O jogo precisa modular o ritmo dos eventos para que a experiência se mantenha compreensível e fluida. A sincronização entre feedback auditivo, tempo de resposta, intensidade dos sons e complexidade das interações atua como um mecanismo de coordenação colaborativa: ambos, jogador e sistema, dependem de um fluxo equilibrado. Interferências, sobreposição sonora ou lacunas informacionais podem romper essa coordenação e comprometer a interação.
+
+Ao relacionar esses conceitos ao design de \textit{The Vale}, torna-se possível compreender como o jogo constrói sua proposta de acessibilidade não apenas por meio de tecnologias assistivas, mas também a partir de princípios derivados dos sistemas colaborativos, aplicados à experiência auditiva e narrativa. Esse enquadramento contribui para interpretar avaliações de jogadores e identificar aspectos que favorecem ou prejudicam a inclusão na prática.
+
+
+
+\section{Metodologia}
+
+Para avaliar a percepção dos usuários sobre \textit{The Vale}, foi conduzida uma análise quantitativa de 295 comentários, coletados na plataforma Steam. O processo, realizado em Python com as bibliotecas \textit{pandas} e \textit{NLTK}, seguiu três etapas: (1) pré-processamento dos textos para limpeza e normalização; (2) análise de frequência de palavras para identificar os tópicos mais discutidos; e (3) análise de sentimentos com o método VADER para quantificar a polaridade emocional das avaliações.
+
+\section{Resultados}
+
+A análise dos dados revelou um panorama claro sobre a experiência do jogador.
+
+\subsection{Tópicos de Discussão na Comunidade}
+
+A análise de frequência indicou que as discussões se concentram nos elementos centrais da experiência. Os termos mais recorrentes foram: \textit{game} (jogo), \textit{story} (história), \textit{experience} (experiência), \textit{sound} (som), \textit{combat} (combate), \textit{audio} (áudio), \textit{blind} (cego) e \textit{play} (jogar). Essa concentração demonstra que os jogadores estão primariamente engajados com a mecânica de acessibilidade auditiva e a narrativa, validando o foco do design do jogo.
+
+\subsection{Percepção Emocional e Recomendação}
+
+A análise de sentimentos revelou uma recepção majoritariamente positiva, com um score médio de sentimento de +0.67 em uma escala de -1 a +1. Há uma forte correlação entre o sentimento e a ação de recomendar o jogo: avaliações marcadas como "Recomendado" apresentaram um score médio de +0.69, enquanto as "Não Recomendado" tiveram uma média de -0.25. Essa disparidade confirma que a métrica de sentimento captura eficazmente a satisfação ou insatisfação do jogador.
+
+\section{Discussão}
+
+Os resultados reforçam o framework teórico de sistemas colaborativos aplicado a \textit{The Vale}. A alta frequência de termos como \textit{sound}, \textit{audio} e \textit{combat}, associada a um sentimento predominantemente positivo, sugere que a "colaboração" entre o jogador e o sistema de \textit{feedback} auditivo foi bem-sucedida. O design sonoro eficaz parece garantir o \textit{awareness} situacional e a \textit{coordenação} necessária para a ação, gerando uma experiência imersiva e satisfatória.
+
+Por outro lado, a existência de avaliações com sentimento fortemente negativo, embora minoritárias, aponta para rupturas nessa colaboração. Essas falhas podem ser atribuídas a momentos de sobrecarga informacional ou inconsistências no \textit{feedback} auditivo, que, conforme a teoria de CSCW, podem levar à frustração. Adicionalmente, a análise dos "votos úteis" (com média de 8.24 e máximo de 691) revela uma camada de cooperação explícita entre os jogadores na plataforma, que trabalham coletivamente para aumentar a visibilidade de críticas informativas.
+
+\section{Conclusão}
+
+Este trabalho analisou avaliações de usuários do jogo \textit{The Vale: Shadow of the Crown} para investigar a percepção de sua acessibilidade sob a ótica dos sistemas colaborativos. A análise quantitativa demonstrou que a experiência, centrada em mecânicas auditivas, foi recebida de forma majoritariamente positiva. Os sentimentos expressos se correlacionam fortemente com a recomendação do jogo, indicando que a colaboração bem-sucedida entre jogador e sistema é um fator crítico para a satisfação. O estudo contribui ao aplicar conceitos de CSCW para interpretar dados de uso real, validando que princípios de \textit{awareness} e \textit{coordenação} são fundamentais em jogos baseados em áudio.
+
+\section{References}
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}

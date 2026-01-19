@@ -1,0 +1,12 @@
+{
+  "name": "relatorio-avaliacoes-the-vale",
+  "version": "1.0.0",
+  "description": "Relatório de avaliações multi-plataforma do jogo The Vale: Shadow of the Crown",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo Build complete"
+  },
+  "keywords": ["gaming", "accessibility", "audio-game", "reviews"],
+  "author": "Carvalho",
+  "license": "MIT"
+}

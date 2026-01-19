@@ -1,0 +1,61 @@
+{
+  "estatisticas": {
+    "totalReviews": 295,
+    "positiveReviews": 289,
+    "negativeReviews": 6,
+    "avgPlaytime": 11.13,
+    "languages": {
+      "english": 286,
+      "spanish": 5,
+      "brazilian": 4
+    }
+  },
+  "playtimeDistribution": {
+    "0-2h": 40,
+    "2-5h": 25,
+    "5-10h": 159,
+    "10+h": 71
+  },
+  "concepts": [
+    {
+      "name": "Audio Espacial",
+      "count": 310
+    },
+    {
+      "name": "Narrativa",
+      "count": 216
+    },
+    {
+      "name": "Acessibilidade",
+      "count": 213
+    },
+    {
+      "name": "Combate",
+      "count": 157
+    },
+    {
+      "name": "Gameplay",
+      "count": 91
+    },
+    {
+      "name": "Imersao",
+      "count": 46
+    },
+    {
+      "name": "Qualidade",
+      "count": 30
+    },
+    {
+      "name": "Exploracao",
+      "count": 15
+    }
+  ],
+  "opinions": {
+    "Qualidade do Áudio": 97,
+    "História": 99,
+    "Jogabilidade": 98,
+    "Acessibilidade": 96,
+    "Duração": 98,
+    "Replay Value": 100
+  }
+}

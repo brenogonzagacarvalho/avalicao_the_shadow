@@ -1,0 +1,263 @@
+{
+  "game": {
+    "title": "The Vale: Shadow of the Crown",
+    "developer": "Falling Squirrel",
+    "publisher": "Falling Squirrel",
+    "release_date": "2021-08-19",
+    "genres": [
+      "Audio Adventure",
+      "RPG",
+      "Accessible Gaming"
+    ]
+  },
+  "summary": {
+    "total_reviews": 627,
+    "average_rating": 93.5,
+    "platforms_count": 6,
+    "overall_sentiment": "Overwhelmingly Positive"
+  },
+  "platforms": {
+    "steam": {
+      "estatisticas": {
+        "totalReviews": 295,
+        "positiveReviews": 289,
+        "negativeReviews": 6,
+        "avgPlaytime": 11.13,
+        "languages": {
+          "english": 286,
+          "spanish": 5,
+          "brazilian": 4
+        }
+      },
+      "playtimeDistribution": {
+        "0-2h": 40,
+        "2-5h": 25,
+        "5-10h": 159,
+        "10+h": 71
+      },
+      "concepts": [
+        {
+          "name": "Audio Espacial",
+          "count": 310
+        },
+        {
+          "name": "Narrativa",
+          "count": 216
+        },
+        {
+          "name": "Acessibilidade",
+          "count": 213
+        },
+        {
+          "name": "Combate",
+          "count": 157
+        },
+        {
+          "name": "Gameplay",
+          "count": 91
+        },
+        {
+          "name": "Imersao",
+          "count": 46
+        },
+        {
+          "name": "Qualidade",
+          "count": 30
+        },
+        {
+          "name": "Exploracao",
+          "count": 15
+        }
+      ],
+      "opinions": {
+        "Qualidade do Áudio": 97,
+        "História": 99,
+        "Jogabilidade": 98,
+        "Acessibilidade": 96,
+        "Duração": 98,
+        "Replay Value": 100
+      },
+      "plataforma": "Steam"
+    },
+    "metacritic": {
+      "plataforma": "Metacritic",
+      "metascore": {
+        "pc": 82,
+        "xbox": 80,
+        "switch": 78
+      },
+      "user_score": 8.4,
+      "total_critic_reviews": 15,
+      "total_user_reviews": 47,
+      "critic_reviews": [
+        {
+          "source": "Game Informer",
+          "score": 85,
+          "excerpt": "A unique audio-only adventure that succeeds in creating an immersive world purely through sound design.",
+          "sentiment": "positive"
+        },
+        {
+          "source": "IGN",
+          "score": 80,
+          "excerpt": "The Vale proves that accessibility and innovation can go hand in hand to create something truly special.",
+          "sentiment": "positive"
+        },
+        {
+          "source": "PC Gamer",
+          "score": 78,
+          "excerpt": "An ambitious audio-first RPG that delivers on its promise of inclusive gaming.",
+          "sentiment": "positive"
+        },
+        {
+          "source": "GameSpot",
+          "score": 82,
+          "excerpt": "A groundbreaking title that sets new standards for audio-based gameplay and accessibility.",
+          "sentiment": "positive"
+        },
+        {
+          "source": "Destructoid",
+          "score": 85,
+          "excerpt": "The Vale is a triumph of audio design and storytelling.",
+          "sentiment": "positive"
+        },
+        {
+          "source": "Push Square",
+          "score": 75,
+          "excerpt": "While the concept is innovative, the gameplay can feel repetitive at times.",
+          "sentiment": "mixed"
+        }
+      ],
+      "user_reviews_sample": [
+        {
+          "score": 10,
+          "text": "As a visually impaired gamer, this is the first game I could play completely independently. Incredible experience!",
+          "sentiment": "positive"
+        },
+        {
+          "score": 9,
+          "text": "Amazing audio design and compelling story. The combat system using only sound is revolutionary.",
+          "sentiment": "positive"
+        },
+        {
+          "score": 8,
+          "text": "Great concept and execution. The 3D audio is phenomenal and the story kept me engaged throughout.",
+          "sentiment": "positive"
+        },
+        {
+          "score": 7,
+          "text": "Interesting game but a bit short. Would love to see more content like this.",
+          "sentiment": "positive"
+        },
+        {
+          "score": 5,
+          "text": "The idea is great but the gameplay becomes repetitive after a few hours.",
+          "sentiment": "mixed"
+        }
+      ]
+    },
+    "xbox": {
+      "plataforma": "Xbox",
+      "rating": 4.5,
+      "total_ratings": 127,
+      "breakdown": {
+        "5_stars": 89,
+        "4_stars": 24,
+        "3_stars": 8,
+        "2_stars": 4,
+        "1_stars": 2
+      },
+      "destacados": [
+        "Audio experience like no other",
+        "Perfect for visually impaired gamers",
+        "Innovative combat system",
+        "Compelling medieval story"
+      ]
+    },
+    "playstation": {
+      "plataforma": "PlayStation",
+      "rating": 4.6,
+      "total_ratings": 84,
+      "breakdown": {
+        "5_stars": 62,
+        "4_stars": 15,
+        "3_stars": 4,
+        "2_stars": 2,
+        "1_stars": 1
+      }
+    },
+    "nintendo": {
+      "plataforma": "Nintendo Switch",
+      "rating": 4.3,
+      "total_ratings": 43,
+      "breakdown": {
+        "5_stars": 28,
+        "4_stars": 9,
+        "3_stars": 4,
+        "2_stars": 1,
+        "1_stars": 1
+      }
+    },
+    "epic": {
+      "plataforma": "Epic Games Store",
+      "rating": 4.7,
+      "total_ratings": 31,
+      "recommended_percent": 94
+    }
+  },
+  "key_topics": [
+    {
+      "name": "Audio Espacial",
+      "count": 310
+    },
+    {
+      "name": "Narrativa",
+      "count": 216
+    },
+    {
+      "name": "Acessibilidade",
+      "count": 213
+    },
+    {
+      "name": "Combate",
+      "count": 157
+    },
+    {
+      "name": "Gameplay",
+      "count": 91
+    },
+    {
+      "name": "Imersao",
+      "count": 46
+    },
+    {
+      "name": "Qualidade",
+      "count": 30
+    },
+    {
+      "name": "Exploracao",
+      "count": 15
+    }
+  ],
+  "aspect_ratings": {
+    "Qualidade do Áudio": 97,
+    "História": 99,
+    "Jogabilidade": 98,
+    "Acessibilidade": 96,
+    "Duração": 98,
+    "Replay Value": 100
+  },
+  "highlights": {
+    "positive": [
+      "Experiência de áudio revolucionária",
+      "Acessibilidade exemplar para jogadores com deficiência visual",
+      "Narrativa envolvente e imersiva",
+      "Design de som espacial de alta qualidade",
+      "Combate inovador baseado puramente em áudio"
+    ],
+    "areas_for_improvement": [
+      "Duração do jogo poderia ser maior",
+      "Replay value limitado",
+      "Alguns momentos de gameplay repetitivo"
+    ]
+  }
+}

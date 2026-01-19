@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Avaliações - The Vale: Shadow of the Crown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #475569;
+            --light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(99, 102, 241, 0.4);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+            transform: scale(1.05);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-top: 1rem;
+        }
+
+        .network-node {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+            border: 2px solid rgba(99, 102, 241, 0.4);
+            border-radius: 50%;
+            padding: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.5rem;
+            min-width: 100px;
+            min-height: 100px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .network-node:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+            transform: scale(1.1);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .network-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .sentiment-bar {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            height: 30px;
+            margin: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sentiment-fill {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            font-weight: 600;
+            transition: width 1.5s ease;
+        }
+
+        .positive {
+            background: linear-gradient(90deg, var(--success), #34d399);
+        }
+
+        .negative {
+            background: linear-gradient(90deg, var(--danger), #f87171);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+            transform: translateY(-2px);
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .review-sample {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--primary);
+        }
+
+        .review-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Relatório de Avaliações</h1>
+            <p class="subtitle">The Vale: Shadow of the Crown - Análise Multi-Plataforma</p>
+        </header>
+
+        <!-- Estatísticas Gerais -->
+        <div class="grid">
+            <div class="stat-box">
+                <div class="stat-value" id="totalReviews">---</div>
+                <div class="stat-label">Total de Reviews</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="positiveRate">---</div>
+                <div class="stat-label">Aprovação Média</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="avgPlaytime">---</div>
+                <div class="stat-label">Média de Horas (Steam)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="languageCount">---</div>
+                <div class="stat-label">Plataformas</div>
+            </div>
+        </div>
+
+        <!-- 1) Rede de Usuários (agora Plataformas) -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">👥</div>
+                <h2 class="card-title">1) Rede de Usuários (Plataformas)</h2>
+            </div>
+            <div class="content">
+                <p style="margin-bottom: 1.5rem;">Distribuição das avaliações entre as diferentes plataformas.</p>
+                <div class="chart-container">
+                    <canvas id="userNetworkChart"></canvas>
+                </div>
+                <div class="insight-box">
+                    <strong>💡 Insight:</strong> <span id="userInsight">Analisando dados globais...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2) Rede de Assuntos -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔗</div>
+                <h2 class="card-title">2) Rede de Assuntos</h2>
+            </div>
+            <div class="content">
+
+                <!-- 2.1) Conceitos Relevantes -->
+                <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">2.1) Conceitos Relevantes</h3>
+                <p style="margin-bottom: 1rem;">Temas e conceitos mais mencionados nas avaliações:</p>
+                <div id="conceptsContainer" class="network-container">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+
+                <!-- 2.2) Análise de Sentimentos -->
+                <h3 style="color: var(--secondary); margin-top: 2rem; margin-bottom: 1rem;">2.2) Análise de Sentimentos
+                </h3>
+                <div>
+                    <p style="margin-bottom: 0.5rem;"><strong>Aprovação Global</strong></p>
+                    <div class="sentiment-bar">
+                        <div class="sentiment-fill positive" id="positiveBar" style="width: 0%;">
+                            <span id="positivePercent">0%</span>
+                        </div>
+                    </div>
+
+                    <p style="margin-bottom: 0.5rem;"><strong>Desaprovação / Misto</strong></p>
+                    <div class="sentiment-bar">
+                        <div class="sentiment-fill negative" id="negativeBar" style="width: 0%;">
+                            <span id="negativePercent">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container" style="margin-top: 2rem;">
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+
+                <!-- 2.3) Opinião de Criações -->
+                <h3 style="color: var(--accent); margin-top: 2rem; margin-bottom: 1rem;">2.3) Opinião de Criações</h3>
+                <p style="margin-bottom: 1rem;">Aspectos específicos do jogo avaliados pelos usuários:</p>
+                <div id="opinionsContainer">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+
+                <div class="warning-box" style="margin-top: 2rem;">
+                    <strong>⚠️ Pontos de Atenção:</strong> <span id="attentionPoints">Processando dados...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Distribuição por Idioma -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🌍</div>
+                <h2 class="card-title">Distribuição por Idioma (Steam)</h2>
+            </div>
+            <div class="content">
+                <div class="chart-container">
+                    <canvas id="languageChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amostras de Reviews -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📝</div>
+                <h2 class="card-title">Amostras de Reviews</h2>
+            </div>
+            <div class="content" id="reviewSamples">
+                <!-- Será preenchido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para carregar e processar os dados
+        async function loadData() {
+            try {
+                const response = await fetch('dados_consolidados.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                updateStatistics(data);
+                createCharts(data);
+                displayConcepts(data.key_topics);
+                displayOpinions(data.aspect_ratings);
+
+                displayReviewSamples(data);
+                animateSentimentBars(data);
+
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                document.querySelector('.container').insertAdjacentHTML('afterbegin',
+                    `<div class="warning-box" style="margin-bottom: 2rem;">
+                        Erro ao carregar dados consolidados. Certifique-se que <code>dados_consolidados.json</code> existe.
+                        <br><small>${error.message}</small>
+                    </div>`);
+            }
+        }
+
+        function updateStatistics(data) {
+            const stats = data.summary;
+
+            document.getElementById('totalReviews').textContent = stats.total_reviews.toLocaleString();
+            document.getElementById('positiveRate').textContent = stats.average_rating + '%';
+            document.getElementById('avgPlaytime').textContent = data.platforms.steam.estatisticas.avgPlaytime.toFixed(1) + 'h';
+            document.getElementById('languageCount').textContent = stats.platforms_count;
+            document.querySelector('.stat-label:last-child').textContent = "Plataformas";
+
+            document.getElementById('userInsight').textContent =
+                `Recepção geral: ${stats.overall_sentiment}. Destaque para aclamação sobre áudio acessível em todas plataformas.`;
+
+            document.getElementById('attentionPoints').textContent =
+                "Algumas críticas sobre duração e replay value, especialmente nas análises de console.";
+        }
+
+        function animateSentimentBars(data) {
+            const positivePercent = data.summary.average_rating;
+            const negativePercent = (100 - positivePercent).toFixed(1);
+
+            setTimeout(() => {
+                const posBar = document.getElementById('positiveBar');
+                const negBar = document.getElementById('negativeBar');
+
+                if (posBar) {
+                    posBar.style.width = positivePercent + '%';
+                    document.getElementById('positivePercent').textContent = positivePercent + '%';
+                }
+                if (negBar) {
+                    negBar.style.width = negativePercent + '%';
+                    document.getElementById('negativePercent').textContent = negativePercent + '%';
+                }
+            }, 500);
+        }
+
+        function createCharts(data) {
+            // User Network Chart (Agora mostrando distribuição por plataforma)
+            const userCtx = document.getElementById('userNetworkChart').getContext('2d');
+
+            const platforms = data.platforms;
+            const platformLabels = ['Steam', 'Metacritic Critics', 'Metacritic Users', 'Xbox', 'PlayStation', 'Nintendo', 'Epic'];
+            const platformCounts = [
+                platforms.steam.estatisticas.totalReviews,
+                platforms.metacritic.total_critic_reviews,
+                platforms.metacritic.total_user_reviews,
+                platforms.xbox.total_ratings,
+                platforms.playstation.total_ratings,
+                platforms.nintendo.total_ratings,
+                platforms.epic.total_ratings
+            ];
+
+            new Chart(userCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: platformLabels,
+                    datasets: [{
+                        data: platformCounts,
+                        backgroundColor: [
+                            'rgba(99, 102, 241, 0.8)', // Steam
+                            'rgba(251, 191, 36, 0.8)', // Meta Critic
+                            'rgba(251, 191, 36, 0.5)', // Meta User
+                            'rgba(16, 185, 129, 0.8)', // Xbox
+                            'rgba(59, 130, 246, 0.8)', // PS
+                            'rgba(239, 68, 68, 0.8)',  // Nintendo
+                            'rgba(255, 255, 255, 0.8)' // Epic
+                        ],
+                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#f1f5f9' }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Avaliações por Plataforma',
+                            color: '#f1f5f9',
+                            font: { size: 16 }
+                        }
+                    }
+                }
+            });
+
+            // Sentiment Chart
+            const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+            new Chart(sentimentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['PC (Steam)', 'Xbox', 'PSN', 'Switch'],
+                    datasets: [{
+                        label: 'Nota Média / Aprovação (0-100)',
+                        data: [
+                            (data.platforms.steam.estatisticas.positiveReviews / data.platforms.steam.estatisticas.totalReviews * 100).toFixed(1),
+                            (data.platforms.xbox.rating * 20).toFixed(1),
+                            (data.platforms.playstation.rating * 20).toFixed(1),
+                            (data.platforms.nintendo.rating * 20).toFixed(1)
+                        ],
+                        backgroundColor: [
+                            'rgba(99, 102, 241, 0.7)',
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(239, 68, 68, 0.7)'
+                        ],
+                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Comparativo de Aprovação por Plataforma',
+                            color: '#f1f5f9'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                        }
+                    }
+                }
+            });
+
+            // Language Chart
+            const langCtx = document.getElementById('languageChart').getContext('2d');
+            const steamLangs = data.platforms.steam.estatisticas.languages || {};
+
+            new Chart(langCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(steamLangs).map(k => k.toUpperCase()),
+                    datasets: [{
+                        label: 'Reviewers (Steam)',
+                        data: Object.values(steamLangs),
+                        backgroundColor: 'rgba(139, 92, 246, 0.8)',
+                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Distribuição Idiomática (Steam)',
+                            color: '#f1f5f9'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function displayConcepts(concepts) {
+            const container = document.getElementById('conceptsContainer');
+            if (!concepts) return;
+
+            container.innerHTML = concepts.map(concept => `
+                <div class="network-node" title="${concept.count} menções">
+                    <div style="text-align: center;">
+                        <div style="font-weight: 600;">${concept.name}</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">${concept.count}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayOpinions(opinions) {
+            const container = document.getElementById('opinionsContainer');
+            if (!opinions) return;
+
+            const html = Object.entries(opinions).map(([aspect, score]) => `
+                <div style="margin: 1rem 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span><strong>${aspect}</strong></span>
+                        <span style="color: var(--primary);">${score}%</span>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.05); height: 10px; border-radius: 5px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, var(--primary), var(--secondary)); height: 100%; width: ${score}%; transition: width 1s ease;"></div>
+                    </div>
+                </div>
+            `).join('');
+            container.innerHTML = html;
+        }
+
+        function displayReviewSamples(data) {
+            // Misturando reviews de diferentes fontes se disponível, ou usando estáticas como fallback
+            const samples = [
+                {
+                    text: "Incrível experiência de áudio! Como jogador com deficiência visual, finalmente encontrei um jogo que me permite jogar completamente através do som.",
+                    recommended: true,
+                    source: "Steam / PC"
+                },
+                {
+                    text: "The Vale is a triumph of audio design and storytelling. A unique adventure.",
+                    recommended: true,
+                    source: "Metacritic / Critic"
+                },
+                {
+                    text: "Jogabilidade inovadora, mas senti falta de um pouco mais de variedade nos combates finais.",
+                    recommended: true,
+                    source: "Xbox Store"
+                }
+            ];
+
+            const container = document.getElementById('reviewSamples');
+            container.innerHTML = samples.map(review => `
+                <div class="review-sample">
+                    <div style="margin-bottom: 0.5rem;">
+                        ${review.recommended ? '👍' : '👎'} 
+                        <strong style="color: ${review.recommended ? 'var(--success)' : 'var(--danger)'};">
+                            ${review.recommended ? 'Recomendado' : 'Não Recomendado'}
+                        </strong>
+                    </div>
+                    <p style="font-style: italic;">"${review.text}"</p>
+                    <div class="review-meta">
+                        📍 ${review.source}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.addEventListener('load', loadData);
+    </script>
+</body>
+
+</html>
