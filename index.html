@@ -358,20 +358,56 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-icon">🔗</div>
-                <h2 class="card-title">2) Rede de Assuntos</h2>
+                <div>
+                    <h2 class="card-title">2) Rede de Assuntos & Análise de Sentido</h2>
+                    <p style="font-size: 0.9rem; color: var(--gray);">Análise semântica detalhada de interações</p>
+                </div>
             </div>
             <div class="content">
 
-                <!-- 2.1) Conceitos Relevantes -->
-                <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">2.1) Conceitos Relevantes</h3>
-                <p style="margin-bottom: 1rem;">Temas e conceitos mais mencionados nas avaliações:</p>
+                <div
+                    style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 10px; margin-bottom: 2rem; border-left: 4px solid var(--primary);">
+                    <strong>📘 Relatório Técnico Disponível:</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                        Uma análise aprofundada sobre a metodologia de N-Gramas, matrizes de co-ocorrência e perfis de
+                        interação dos usuários foi gerada.
+                        <br>
+                        <a href="javascript:void(0)"
+                            onclick="alert('O relatório técnico (relatorio_tecnico_analise.md) detalha a metodologia de análise de sentido utilizada.')"
+                            style="color: var(--accent); text-decoration: none; font-weight: 600;">
+                            Ver Detalhes da Metodologia →
+                        </a>
+                    </p>
+                </div>
+
+                <!-- 2.1) Co-ocorrência e Conceitos -->
+                <h3 style="color: var(--primary); margin-top: 1rem; margin-bottom: 1rem;">2.1) Rede de Conceitos e
+                    Co-ocorrência</h3>
+                <p style="margin-bottom: 1rem;">Termos que frequentemente aparecem juntos, indicando conexões semânticas
+                    fortes:</p>
+
+                <div id="cooccurrenceContainer"
+                    style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">
+                    <!-- Preenchido via JS -->
+                </div>
+
                 <div id="conceptsContainer" class="network-container">
                     <!-- Será preenchido via JavaScript -->
                 </div>
 
-                <!-- 2.2) Análise de Sentimentos -->
-                <h3 style="color: var(--secondary); margin-top: 2rem; margin-bottom: 1rem;">2.2) Análise de Sentimentos
-                </h3>
+                <!-- 2.2) N-Gramas (Frases Frequentes) -->
+                <h3 style="color: var(--secondary); margin-top: 2rem; margin-bottom: 1rem;">2.2) Frases Recorrentes
+                    (N-Gramas)</h3>
+                <p style="margin-bottom: 1rem;">Expressões comuns utilizadas nas avaliações:</p>
+                <div id="ngramsContainer"
+                    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+                    <!-- Preenchido via JS -->
+                </div>
+
+
+                <!-- 2.3) Análise de Sentimentos -->
+                <h3 style="color: var(--accent); margin-top: 2rem; margin-bottom: 1rem;">2.3) Análise de Sentimentos
+                    Global</h3>
                 <div>
                     <p style="margin-bottom: 0.5rem;"><strong>Aprovação Global</strong></p>
                     <div class="sentiment-bar">
@@ -444,6 +480,10 @@
                 createCharts(data);
                 displayConcepts(data.key_topics);
                 displayOpinions(data.aspect_ratings);
+
+                // Novos displais técnicos
+                if (data.cooccurrence) displayCooccurrence(data.cooccurrence);
+                if (data.ngrams) displayNgrams(data.ngrams);
 
                 displayReviewSamples(data);
                 animateSentimentBars(data);
@@ -706,6 +746,36 @@
             `).join('');
         }
 
+        function displayCooccurrence(edges) {
+            const container = document.getElementById('cooccurrenceContainer');
+            if (!edges || edges.length === 0) return;
+
+            container.innerHTML = edges.map(edge => `
+                <div class="tag" style="display: flex; align-items: center; gap: 0.5rem; background: rgba(139, 92, 246, 0.15); border-color: var(--secondary);">
+                    <span>${edge.source}</span>
+                    <span style="color: var(--gray);">↔</span>
+                    <span>${edge.target}</span>
+                    <span style="background: var(--secondary); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; alignItems: center; justifyContent: center; font-size: 0.7rem;">${edge.weight}</span>
+                </div>
+            `).join('');
+        }
+
+        function displayNgrams(ngramsData) {
+            const container = document.getElementById('ngramsContainer');
+            if (!ngramsData || !ngramsData.bigramas) return;
+
+            // Combina bigramas e trigramas principais
+            const allGrams = [...ngramsData.bigramas.slice(0, 8), ...ngramsData.trigramas.slice(0, 4)];
+
+            container.innerHTML = allGrams.map(gram => `
+                <div style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <div style="font-weight: 600; font-style: italic;">"${gram.text}"</div>
+                    <div style="font-size: 0.8rem; color: var(--gray); margin-top: 0.3rem;">${gram.value} ocorrências</div>
+                </div>
+            `).join('');
+        }
+
+        // Carregar dados quando a página carregar
         window.addEventListener('load', loadData);
     </script>
 </body>

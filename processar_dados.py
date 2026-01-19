@@ -103,13 +103,91 @@ def analisar_opiniao_aspectos(df):
     
     return resultados
 
+def gerar_ngrams(textos, n=2, top_k=10):
+    """Gera N-Grams mais frequentes (bigramas, trigramas)"""
+    ngrams_list = []
+    
+    # Stopwords básicas para limpeza (hardcoded para evitar dependências externas)
+    stopwords = {'a', 'o', 'e', 'de', 'do', 'da', 'em', 'um', 'uma', 'que', 'é', 'com', 'não', 'os', 'as', 'para', 'se', 'na', 'no', 'por', 'mais', 'foi', 'ao', 'dos', 'das', 'seu', 'sua', 'ou', 'ser', 'quando', 'muito', 'nos', 'já', 'está', 'eu', 'também', 'só', 'pelo', 'pela', 'até', 'isso', 'ela', 'entre', 'era', 'depois', 'sem', 'mesmo', 'aos', 'ter', 'seus', 'quem', 'nas', 'me', 'esse', 'eles', 'estão', 'você', 'tinha', 'foram', 'essa', 'num', 'nem', 'suas', 'meu', 'às', 'minha', 'têm', 'numa', 'pelos', 'elas', 'havia', 'seja', 'qual', 'será', 'nós', 'tenho', 'lhe', 'deles', 'essas', 'esses', 'pelas', 'este', 'fosse', 'dele', 'tu', 'te', 'vocês', 'vos', 'lhes', 'meus', 'minhas', 'teu', 'tua', 'teus', 'tuas', 'nosso', 'nossa', 'nossos', 'nossas', 'dela', 'delas', 'esta', 'estes', 'estas', 'aquele', 'aquela', 'aqueles', 'aquelas', 'isto', 'aquilo', 'estou', 'está', 'estamos', 'estão', 'estive', 'esteve', 'estivemos', 'estiveram', 'estava', 'estávamos', 'estavam', 'estivera', 'estivéramos', 'esteja', 'ejamos', 'estejam', 'estivesse', 'estivéssemos', 'estivessem', 'estiver', 'estivermos', 'estiverem', 'hei', 'há', 'havemos', 'hão', 'houve', 'houvemos', 'houveram', 'houvera', 'houvéramos', 'haja', 'hajamos', 'hajam', 'houvesse', 'houvéssemos', 'houvessem', 'houver', 'houvermos', 'houverem', 'houverei', 'houverá', 'houveremos', 'houverão', 'houveria', 'houveríamos', 'houveriam', 'sou', 'somos', 'são', 'era', 'éramos', 'eram', 'fui', 'foi', 'fomos', 'foram', 'fora', 'foramos', 'seja', 'sejamos', 'sejam', 'fosse', 'fôssemos', 'fossem', 'for', 'formos', 'forem', 'serei', 'será', 'seremos', 'serão', 'seria', 'seríamos', 'seriam', 'tenho', 'tem', 'temos', 'tém', 'tinha', 'tínhamos', 'tinham', 'tive', 'teve', 'tivemos', 'tiveram', 'tivera', 'tivéramos', 'tenha', 'tenhamos', 'tenham', 'tivesse', 'tivéssemos', 'tivessem', 'tiver', 'tivermos', 'tiverem', 'terei', 'terá', 'teremos', 'terão', 'teria', 'teríamos', 'teriam', 'the', 'and', 'of', 'to', 'a', 'in', 'is', 'it', 'you', 'that', 'for', 'on', 'with', 'as', 'was', 'are', 'this', 'but', 'be', 'have', 'not', 'an', 'at', 'or', 'if', 'from', 'my', 'all', 'so', 'me', 'by', 'one', 'can', 'just', 'like', 'about', 'very', 'out', 'what', 'game'}
+
+    for texto in textos:
+        if not isinstance(texto, str): continue
+        # Limpeza básica
+        palavras = re.findall(r'\b[a-z]{3,}\b', texto.lower())
+        palavras = [p for p in palavras if p not in stopwords]
+        
+        # Gerar n-grams
+        for i in range(len(palavras) - n + 1):
+            ngram = ' '.join(palavras[i:i+n])
+            ngrams_list.append(ngram)
+            
+    counts = Counter(ngrams_list)
+    return [{'text': gram, 'value': count} for gram, count in counts.most_common(top_k)]
+
+def analisar_coocorrencia(df, keywords):
+    """
+    Analisa quais conceitos aparecem juntos nas mesmas reviews.
+    Retorna uma matriz de adjacência (lista de arestas para grafo).
+    """
+    if 'Review' not in df.columns: return []
+    
+    coocorrencias = Counter()
+    
+    for review in df['Review'].astype(str).str.lower():
+        conceitos_presentes = []
+        for concept, terms in keywords.items():
+            if any(term in review for term in terms):
+                conceitos_presentes.append(concept)
+        
+        # Se houver mais de um conceito, gera pares
+        if len(conceitos_presentes) > 1:
+            # Ordena para garantir que (A, B) seja igual a (B, A)
+            conceitos_presentes.sort()
+            for i in range(len(conceitos_presentes)):
+                for j in range(i + 1, len(conceitos_presentes)):
+                    pair = f"{conceitos_presentes[i]}|{conceitos_presentes[j]}"
+                    coocorrencias[pair] += 1
+                    
+    # Formata para visualização de grafo
+    edges = []
+    for pair, weight in coocorrencias.most_common(15):
+        source, target = pair.split('|')
+        edges.append({
+            'source': source.replace('_', ' ').title(),
+            'target': target.replace('_', ' ').title(),
+            'weight': weight
+        })
+        
+    return edges
+
 def gerar_json_dados(df):
     """Gera um arquivo JSON com todos os dados processados"""
+    
+    # Palavras-chave centralizadas
+    keywords = {
+        'acessibilidade': ['accessibility', 'accessible', 'acessibilidade', 'accesibilidad', 'blind', 'cego', 'visual'],
+        'audio_espacial': ['spatial audio', 'sound design', 'áudio espacial', 'audio', 'som', 'sonido', 'binaural', 'hearing'],
+        'narrativa': ['story', 'narrative', 'história', 'narrativa', 'historia', 'plot', 'writing'],
+        'imersao': ['immersive', 'immersion', 'imersivo', 'envolvente', 'inmersivo', 'atmosphere'],
+        'combate': ['combat', 'fight', 'battle', 'combate', 'luta', 'fighting'],
+        'exploracao': ['exploration', 'explore', 'exploração', 'explorar', 'world', 'walking'],
+        'gameplay': ['gameplay', 'mechanics', 'jogabilidade', 'mecânica', 'play'],
+        'qualidade': ['quality', 'qualidade', 'calidad', 'excellent', 'excelente', 'great', 'good', 'best']
+    }
+
+    raw_reviews = df['Review'].astype(str).tolist() if 'Review' in df.columns else []
+
     dados = {
         'estatisticas': calcular_estatisticas(df),
         'playtimeDistribution': analisar_tempo_jogado(df),
-        'concepts': extrair_conceitos(df),
-        'opinions': analisar_opiniao_aspectos(df)
+        'concepts': extrair_conceitos(df), # Reutiliza a lógica existente mas poderia ser atualizada para usar 'keywords' local se desejado
+        'opinions': analisar_opiniao_aspectos(df),
+        # Novos campos de análise aprofundada
+        'ngramas': {
+            'bigramas': gerar_ngrams(raw_reviews, n=2, top_k=15),
+            'trigramas': gerar_ngrams(raw_reviews, n=3, top_k=10)
+        },
+        'coocorrencia': analisar_coocorrencia(df, keywords)
     }
     
     with open('dados_processados.json', 'w', encoding='utf-8') as f:
@@ -140,4 +218,4 @@ if __name__ == '__main__':
     for aspecto, score in dados['opinions'].items():
         print(f"- {aspecto}: {score}%")
     
-    print("\nProcessamento concluído! Abra 'relatorio_avaliacoes.html' no navegador.")
+    print("\nProcessamento concluído! Abra 'index.html' no navegador.")

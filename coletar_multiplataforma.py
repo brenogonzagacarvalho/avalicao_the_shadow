@@ -250,6 +250,8 @@ def consolidar_dados():
         },
         "key_topics": steam_data.get('concepts', []),
         "aspect_ratings": steam_data.get('opinions', {}),
+        "ngrams": steam_data.get('ngramas', {}),
+        "cooccurrence": steam_data.get('coocorrencia', []),
         "highlights": {
             "positive": [
                 "Experiência de áudio revolucionária",

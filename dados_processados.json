@@ -57,5 +57,188 @@
     "Acessibilidade": 96,
     "Duração": 98,
     "Replay Value": 100
-  }
+  },
+  "ngramas": {
+    "bigramas": [
+      {
+        "text": "voice acting",
+        "value": 60
+      },
+      {
+        "text": "sound design",
+        "value": 30
+      },
+      {
+        "text": "your eyes",
+        "value": 23
+      },
+      {
+        "text": "eyes closed",
+        "value": 22
+      },
+      {
+        "text": "side quests",
+        "value": 21
+      },
+      {
+        "text": "unique experience",
+        "value": 18
+      },
+      {
+        "text": "highly recommend",
+        "value": 17
+      },
+      {
+        "text": "more games",
+        "value": 16
+      },
+      {
+        "text": "visually impaired",
+        "value": 16
+      },
+      {
+        "text": "video games",
+        "value": 12
+      },
+      {
+        "text": "audio cues",
+        "value": 11
+      },
+      {
+        "text": "well done",
+        "value": 11
+      },
+      {
+        "text": "audio only",
+        "value": 11
+      },
+      {
+        "text": "audio based",
+        "value": 10
+      },
+      {
+        "text": "your way",
+        "value": 10
+      }
+    ],
+    "trigramas": [
+      {
+        "text": "close your eyes",
+        "value": 9
+      },
+      {
+        "text": "your eyes closed",
+        "value": 9
+      },
+      {
+        "text": "vale shadow crown",
+        "value": 9
+      },
+      {
+        "text": "story voice acting",
+        "value": 8
+      },
+      {
+        "text": "voice acting sound",
+        "value": 7
+      },
+      {
+        "text": "games ever played",
+        "value": 5
+      },
+      {
+        "text": "acting sound design",
+        "value": 5
+      },
+      {
+        "text": "would love see",
+        "value": 5
+      },
+      {
+        "text": "voice acting story",
+        "value": 4
+      },
+      {
+        "text": "voice acting great",
+        "value": 4
+      }
+    ]
+  },
+  "coocorrencia": [
+    {
+      "source": "Audio Espacial",
+      "target": "Gameplay",
+      "weight": 117
+    },
+    {
+      "source": "Gameplay",
+      "target": "Narrativa",
+      "weight": 112
+    },
+    {
+      "source": "Gameplay",
+      "target": "Qualidade",
+      "weight": 107
+    },
+    {
+      "source": "Audio Espacial",
+      "target": "Narrativa",
+      "weight": 100
+    },
+    {
+      "source": "Audio Espacial",
+      "target": "Qualidade",
+      "weight": 94
+    },
+    {
+      "source": "Narrativa",
+      "target": "Qualidade",
+      "weight": 91
+    },
+    {
+      "source": "Acessibilidade",
+      "target": "Gameplay",
+      "weight": 86
+    },
+    {
+      "source": "Acessibilidade",
+      "target": "Audio Espacial",
+      "weight": 78
+    },
+    {
+      "source": "Combate",
+      "target": "Gameplay",
+      "weight": 74
+    },
+    {
+      "source": "Audio Espacial",
+      "target": "Combate",
+      "weight": 73
+    },
+    {
+      "source": "Acessibilidade",
+      "target": "Qualidade",
+      "weight": 69
+    },
+    {
+      "source": "Combate",
+      "target": "Narrativa",
+      "weight": 64
+    },
+    {
+      "source": "Acessibilidade",
+      "target": "Narrativa",
+      "weight": 64
+    },
+    {
+      "source": "Combate",
+      "target": "Qualidade",
+      "weight": 62
+    },
+    {
+      "source": "Acessibilidade",
+      "target": "Combate",
+      "weight": 55
+    }
+  ]
 }
