@@ -8,27 +8,24 @@ A análise foi conduzida através de um pipeline de processamento de linguagem n
 
 Abaixo, o diagrama de fluxo que ilustra como os dados brutos são transformados em insights semânticos.
 
-![alt text](image.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```mermaid
+graph TD
+    A[Coleta Multi-Plataforma] -->|Raw Data| B(Pré-Processamento)
+    B --> C{Extração de Features}
+    
+    subgraph "Camada de Análise de Sentido"
+    C -->|Tokenização| D[Análise de N-Gramas]
+    C -->|Léxico Dedicado| E[Análise de Sentimentos]
+    C -->|Matriz de Adjacência| F[Rede de Co-ocorrência]
+    end
+    
+    D --> G[Identificação de Fraseologia]
+    E --> H[Polaridade & Subjetividade]
+    F --> I[Grafo de Assuntos Conectados]
+    
+    G & H & I --> J[Consolidação de Perfis]
+    J --> K[Relatório Final]
+```
 
 ### 1.2 Algoritmos Utilizados
 
@@ -40,6 +37,36 @@ Abaixo, o diagrama de fluxo que ilustra como os dados brutos são transformados 
 2.  **Análise de Co-ocorrência (Matriz Semântica)**
     *   *Metodologia*: Construção de uma matriz simétrica onde $M_{i,j}$ representa o número de reviews onde o termo $i$ e $o termo $j$ aparecem simultaneamente.
     *   *Inferência*: Uma alta força de ligação (peso da aresta) entre "Narrativa" e "Imersão" sugere que para este público, a imersão é derivada da história, e não apenas dos gráficos (neste caso, inexistentes).
+
+### 1.3 Descrição do Tema
+**The Vale: Shadow of the Crown** é um RPG de aventura focado puramente em áudio, desenvolvido pela *Falling Squirrel*. O jogo é um marco na **acessibilidade digital**, permitindo que jogadores videntes e deficientes visuais tenham a mesma experiência imersiva. 
+O tema central desta análise é entender como a comunidade percebe a substituição do feedback visual pelo áudio espacial (binaural) e como isso afeta a narrativa, o combate e a inclusão.
+
+### 1.4 Metodologia de Coleta de Dados
+A coleta foi realizada de forma híbrida para garantir a maior representatividade possível da base de jogadores:
+
+*   **Steam**: Coleta automatizada via API oficial, obtendo 295 reviews detalhadas, incluindo metadados como horas jogadas e idioma.
+*   **Metacritic**: Extração de dados de críticos (15 reviews) e usuários (47 reviews), fornecendo uma visão qualitativa e notas comparativas de PC, Xbox e Switch.
+*   **Consoles (Xbox Store, PlayStation Store, Nintendo eShop)**: Consolidação de ratings oficiais e volumes de avaliações para medir o alcance multiplataforma.
+*   **Epic Games Store**: Integração da taxa de recomendação e ratings de usuários da loja.
+
+**Total Consolidado**: 627 avaliações processadas.
+
+### 1.5 Tratamento e Processamento dos Dados
+Para extrair sentido dos textos brutos, aplicamos as seguintes técnicas de **Processamento de Linguagem Natural (PLN)**:
+
+1.  **Limpeza e Normalização**: Remoção de *stopwords* (palavras sem valor semântico como "e", "de", "the") em português e inglês.
+2.  **Análise de N-Gramas**: Identificação de frases recorrentes de 2 e 3 palavras (Bigramas e Trigramas) para capturar contextos específicos como "audio design" ou "highly recommend".
+3.  **Matriz de Co-ocorrência**: Mapeamento de termos que aparecem juntos na mesma avaliação. Isso permitiu identificar conexões fortes entre conceitos (ex: quando o usuário fala de "Combate", ele quase sempre cita "Áudio").
+4.  **Análise de Sentimentos por Aspecto**: Classificação automática de trechos de texto em sentimentos (Positivo, Negativo, Misto) correlacionados a categorias (Combate, História, Acessibilidade).
+
+### 1.6 Análise dos Gráficos Gerados
+Os dados foram visualizados através de um Dashboard interativo e ferramentas de rede:
+
+*   **Distribuição de Usuários por Plataforma**: Revelou que a maior parte das discussões técnicas ocorre na Steam, enquanto as notas mais altas de satisfação pura vêm da Epic Games Store (4.7/5).
+*   **Rede de Assuntos (Co-ocorrência)**: O gráfico de rede mostra o **Áudio Espacial** no centro de todas as interações, ramificando-se fortemente para **Combate** e **Imersão**. Isso prova que o áudio não é apenas um "complemento", mas a mecânica base do jogo.
+*   **Distribuição de Horas Jogadas**: Mostrou um pico elevado na faixa de 5-10h, indicando que a maioria dos jogadores completa a campanha principal.
+*   **Aprovação Comparativa**: Demonstrou que a percepção de qualidade é consistente entre PC (Steam) e Consoles, com variações de menos de 5% na nota média.
 
 ---
 
