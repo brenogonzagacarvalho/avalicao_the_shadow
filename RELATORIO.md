@@ -61,7 +61,7 @@ Para extrair sentido dos textos brutos, aplicamos as seguintes técnicas de **Pr
 4.  **Análise de Sentimentos por Aspecto**: Classificação automática de trechos de texto em sentimentos (Positivo, Negativo, Misto) correlacionados a categorias (Combate, História, Acessibilidade).
 
 ### 1.6 Análise dos Gráficos Gerados
-Os dados foram visualizados através de um Dashboard interativo e ferramentas de rede:
+Os dados foram visualizados através de um Dashboard interativo e ferramentas de rede. Especificamente, a ferramenta **Gephi** foi utilizada para processar e gerar as imagens dos grafos de complexidade, permitindo a visualização vetorial das comunidades semânticas:
 
 *   **Distribuição de Usuários por Plataforma**: Revelou que a maior parte das discussões técnicas ocorre na Steam, enquanto as notas mais altas de satisfação pura vêm da Epic Games Store (4.7/5).
 *   **Rede de Assuntos (Co-ocorrência)**: O gráfico de rede mostra o **Áudio Espacial** no centro de todas as interações, ramificando-se fortemente para **Combate** e **Imersão**. Isso prova que o áudio não é apenas um "complemento", mas a mecânica base do jogo.
