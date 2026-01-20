@@ -8,24 +8,7 @@ A análise foi conduzida através de um pipeline de processamento de linguagem n
 
 Abaixo, o diagrama de fluxo que ilustra como os dados brutos são transformados em insights semânticos.
 
-```mermaid
-graph TD
-    A[Coleta Multi-Plataforma] -->|Raw Data| B(Pré-Processamento)
-    B --> C{Extração de Features}
-    
-    subgraph "Camada de Análise de Sentido"
-    C -->|Tokenização| D[Análise de N-Gramas]
-    C -->|Léxico Dedicado| E[Análise de Sentimentos]
-    C -->|Matriz de Adjacência| F[Rede de Co-ocorrência]
-    end
-    
-    D --> G[Identificação de Fraseologia]
-    E --> H[Polaridade & Subjetividade]
-    F --> I[Grafo de Assuntos Conectados]
-    
-    G & H & I --> J[Consolidação de Perfis]
-    J --> K[Relatório Final]
-```
+![Diagrama de Fluxo de Processamento](diagrama.png)
 
 ### 1.2 Algoritmos Utilizados
 
