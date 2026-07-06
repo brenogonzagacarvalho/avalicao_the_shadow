@@ -1,139 +1,354 @@
-\documentclass[12pt,twocolumn]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\documentclass[12pt]{article}
 
-\usepackage[brazil]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{times}
-\usepackage{graphicx}
+\usepackage{sbc-template}
+
+\usepackage[brazilian]{babel}   
+\usepackage[T1]{fontenc} % Codificação para fontes com suporte a caracteres acentuados
+\usepackage[utf8]{inputenc} % Codificação UTF-8 (necessário apenas para pdflatex)
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{graphicx,url}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{textcomp}
 \usepackage{url}
-\usepackage{lipsum}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{soul}
+\usepackage{verbatim}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[shortlabels]{enumitem}
+\usepackage{scalefnt} % pacote para diminuir fonte das tabelas
+\usepackage{comment} % pacote de comentarios
+\usepackage{lscape}
+\usepackage{fancyhdr}
+\usepackage{sbgames}
+\usepackage[super]{nth}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
 
-\usepackage[a4paper,top=3.5cm,bottom=2.5cm,left=3cm,right=3cm]{geometry}
+%previne hifenização
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
 
-\setlength{\parindent}{1.27cm}
-\setlength{\parskip}{0pt}
+\sloppy
 
-\makeatletter
-\renewcommand{\maketitle}{
-  \begin{center}
-    {\large\bfseries \@title \par}
-    \vskip 12pt
-    {\normalsize\bfseries \@author \par}
-    \vskip 12pt
-    {\normalsize \@date \par}
-    \vskip 12pt
-  \end{center}
+\input{sbgames_info}
+
+\title{Acessibilidade em Jogos Colaborativos: Explorando o The Vale: Shadow of the Crown \\
+\medskip
+\small{
+    \textit{Accessibility in Collaborative Games: Exploring The Vale: Shadow of the Crown
 }
-\makeatother
-
-\newenvironment{resumo}{
-  \begin{quote}
-  \noindent\textbf{Resumo. }
-}{
-  \end{quote}
 }
-
-\newenvironment{abstractSBC}{
-  \begin{quote}
-  \noindent\textbf{Abstract. }
-}{
-  \end{quote}
 }
-
-\title{Acessibilidade em Jogos Colaborativos}
 
 \author{
-  André Luis Carvalho da Silva,
-  Breno Gonzaga de Carvalho,
-  Antônio Avelino da Silva ,
-  Evynne Ferreira Avelino
+André Luis Carvalho da Silva\inst{1}, Breno Gonzaga\inst{1}, Antônio Avelino da Silva \inst{1}, \\Evynne Ferreira Avelino\inst{1}, Ana Cesarina de Oliveira Carneiro\inst{1}, Marcelo Martins da Silva\inst{1} }
+
+\address{Universidade Federal do Ceará
+  (UFC)\\
+Quixadá  -- CE -- Brasil
+  \email{\{andreluis90,brenogonzaga96,evynneav,anaoliveirna\}@alu.ufc.br}, 
+  \email{facoavelino9,martins2016eng\}@gmail.com}
 }
 
-\date{
-{\normalsize
-Universidade Federal do Ceará (UFC) — Campus Quixadá\[6pt]
-\texttt{andreluis90@alu.ufc.br, brenogonzaga96@alu.ufc.br, email3@alu.ufc.br}
-}
-}
 
 \begin{document} 
 
 \maketitle
 
+\thispagestyle{plain}
+{\fontsize{11 pt}{\baselineskip}\selectfont{
 \begin{abstract}
-  This meta-paper describes the style to be used in articles and short papers
-  for SBC conferences. For papers in English, you should add just an abstract
-  while for the papers in Portuguese, we also ask for an abstract in
-  Portuguese (``resumo''). In both cases, abstracts should not have more than
-  10 lines and must be in the first page of the paper.
+\textbf{Introduction: }Digital games are predominantly visual, which limits access for people with visual impairments. Advances in spatial audio and narration have expanded inclusion, as seen in \textit{The Vale: Shadow of the Crown}, which is fully navigable through audio.\textbf{Objective:} To analyze how accessibility influences interaction coordination and player experience from the perspective of collaborative systems. \textbf{Methodology:} A qualitative study based on the analysis of 295 Steam comments, using Thematic Qualitative Analysis.\textbf{Results:} The game shows high approval (97.96\%) and is praised for its audio-based accessibility. However, combat can cause cognitive overload. It is concluded that the game promotes inclusion by reconfiguring the interaction between players and the system.
 \end{abstract}
+
+\keywords{Accessibility, Audio Games, Collaborative Systems, User Experience, The Vale}
      
-\begin{resumo}
-  Este meta-artigo descreve o estilo a ser usado na confecção de artigos e
-  resumos de artigos para publicação nos anais das conferências organizadas
-  pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos
-  escritos em português. Artigos em inglês deverão apresentar apenas abstract.
-  Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract) 
-  não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira
-  página do artigo.
+\begin{resumo} 
+\textbf{Introdução: }Jogos digitais são majoritariamente visuais, o que limita o acesso de pessoas com deficiência visual. Avanços em áudio espacial e narração ampliam a inclusão, como em The Vale: Shadow of the Crown, totalmente navegável por áudio. \textbf{Objetivo:} Analisar como a acessibilidade influencia a coordenação da interação e a experiência do jogador sob a perspectiva de sistemas colaborativos.\textbf{Metodologia:} Estudo qualitativo baseado na análise de 295 comentários da Steam, utilizando Análise Temática Qualitativa. \textbf{Resultados:} O jogo apresenta alta aprovação (97,96\%) e é elogiado pela acessibilidade via áudio. Entretanto, o combate pode gerar sobrecarga cognitiva. Conclui-se que o jogo promove inclusão ao reconfigurar a interação entre jogadores e sistema.
 \end{resumo}
+
+\palavraschave{Acessibilidade, Jogos Auditivos, Sistemas Colaborativos, Experiência do Usuário, The Vale.}
 
 
 \section{Introdução}
 
-A acessibilidade em jogos digitais tem se consolidado como um campo essencial dentro da Interação Humano Computador, refletindo esforços para garantir que pessoas com deficiência possam participar plenamente de experiências lúdicas, sociais e colaborativas. Pesquisas recentes apontam que barreiras de acesso, como interfaces predominantemente visuais, ausência de \textit{feedback} multimodal e incompatibilidades com tecnologias assistivas, continuam limitando o engajamento de jogadores com deficiência visual \cite{bolesnikov2022understanding}. Esses obstáculos interferem tanto na percepção de inclusão quanto na autonomia durante a interação com diferentes gêneros de jogos.
+A interação em jogos digitais depende da articulação entre percepção, resposta rápida e compreensão contínua dos elementos apresentados pela interface. Quando essa dinâmica é estruturada predominantemente por recursos visuais, jogadores com deficiência visual encontram barreiras que comprometem não apenas o acesso ao sistema, mas também a autonomia e a continuidade da participação\cite{pereira2018game,sbgames1}. Nesse contexto, a acessibilidade vem ganhando espaço, refletindo esforços voltados a ampliar a inclusão de pessoas com deficiência em atividades lúdicas e interativas \cite{bolesnikov2022understanding,da2023avaliaccao}.
 
-Paralelo a isso, a literatura em acessibilidade evidencia avanços significativos no desenvolvimento de jogos com múltiplas opções adaptativas, buscando atender a perfis variados de jogadores. Estudos destacam que a implementação de mecanismos como leitores de tela integrados, navegação auditiva, pistas sonoras espacializadas e personalização de dificuldade pode elevar substancialmente a experiência emocional e o senso de presença de usuários com necessidades específicas \cite{aguado2020accessibility}, \cite{holloway2019disability}. Além disso, há um crescente interesse em explorar plataformas de criação, como Scratch e Unity, para o desenvolvimento de protótipos colaborativos acessíveis, ampliando oportunidades de experimentação e pesquisa aplicada \cite{dudley2023inclusive}.
+Em resposta a esse cenário, a literatura apresenta avanços no desenvolvimento de jogos com recursos adaptativos, como navegação auditiva, pistas sonoras espacializadas e leitores de tela integrados, ampliando a autonomia, a compreensão do ambiente e a continuidade da interação \cite{aguado2020accessibility}. Esses avanços são especialmente importantes em jogos colaborativos, nos quais a progressão da atividade depende não apenas do acesso ao sistema, mas também da capacidade de interpretar respostas emitidas pela interface, manter orientação situacional e coordenar ações ao longo da dinâmica de jogo.
 
-O estado da arte mostra ainda que jogos colaborativos apresentam desafios particulares: a coordenação entre participantes depende da clareza informacional, do equilíbrio de responsabilidades e da existência de canais alternativos de comunicação. Em jogos não projetados com acessibilidade de origem, essas dimensões frequentemente se tornam fontes de frustração, desigualdade participativa e ruptura da experiência coletiva \cite{bolesnikov2022understanding}. Assim, investigar como a acessibilidade é percebida na prática torna-se fundamental para compreender não apenas o desempenho técnico das adaptações, mas também seu impacto social e emocional.
+Na perspectiva de Sistemas Colaborativos mediados por computador, a continuidade de tarefas interativas depende da manutenção de \textit{awareness}, isto é, da compreensão constante do contexto, dos eventos em andamento e dos sinais disponibilizados pela interface \cite{10.1023/A:1021271517844}. Assim, a acessibilidade pode ser compreendida como elemento que sustenta orientação, tomada de decisão e autonomia durante a interação\cite{belli2019acessibilidade,de2021acessibilidade}. Em atividades fortemente dependentes de áudio, a clareza e a consistência desses mecanismos tornam-se fundamentais para reduzir barreiras de interpretação e esforço cognitivo, favorecendo uma interação mais fluida e compreensível \cite{holloway2019disability}.
 
-Diante desse cenário, este trabalho tem como objetivo realizar uma avaliação de usabilidade para examinar como sistemas colaborativos são percebidos no jogo \textit{The Vale: Shadow of the Crown}, um título projetado especificamente para pessoas cegas ou com baixa visão. Para isso, serão analisados comentários relevantes publicados por jogadores na plataforma \textit{Steam} e em outros ambientes onde o jogo está disponível, buscando identificar padrões relacionados à percepção de acessibilidade, à colaboração mediada por tecnologias assistivas, ao fluxo de interação e à experiência emocional durante o jogo. Essa abordagem possibilita compreender a recepção do público e identificar aspectos de design que favorecem ou prejudicam a inclusão.
+Entre os títulos que ilustram essa dinâmica está \textit{The Vale: Shadow of the Crown} \cite{TheVale2021}. Desenvolvido para proporcionar uma experiência plenamente navegável por áudio a pessoas cegas ou com baixa visão, o jogo depende de pistas sonoras, narração e respostas auditivas contínuas para exploração, combate e progressão narrativa, sendo um caso relevante para investigar como recursos acessíveis podem sustentar processos colaborativos de coordenação entre jogador e sistema.
 
- Ao investigar essas avaliações espontâneas, o estudo contribui para a literatura ao relacionar práticas de design acessível com indicadores reais de usabilidade, inclusão e colaboração. Os resultados pretendem apoiar o desenvolvimento de futuros jogos acessíveis e orientar diretrizes para projetos que busquem integrar colaboração, acessibilidade e experiência emocional de forma consistente.
+Diante disso, este trabalho tem como objetivo analisar como mecanismos de acessibilidade influenciam a coordenação da interação e a experiência do jogador, a partir da percepção de usuários expressa em comentários públicos na plataforma \textit{Steam} \cite{SteamPlatform}. Este estudo busca ampliar a discussão sobre acessibilidade em jogos colaborativos, destacando seu papel não apenas como suporte técnico, mas como elemento estruturante da própria dinâmica interativa.
 
-\section{Sistemas Colaborativos e a Experiência Auditiva em \textit{The Vale}}
+\section{Acessibilidade em Jogos Digitais}
+A acessibilidade em jogos digitais compreende estratégias de design voltadas a reduzir barreiras de interação e ampliar a participação de jogadores com diferentes necessidades funcionais. No caso de pessoas cegas ou com baixa visão, tais barreiras estão frequentemente associadas à predominância de elementos visuais para navegação, identificação de objetivos, leitura de menus e interpretação de eventos em tempo real, comprometendo a autonomia e a continuidade da atividade \cite{10.1007/s10209-010-0189-5}.
 
-A análise da acessibilidade em jogos auditivos como \textit{The Vale: Shadow of the Crown} pode ser ampliada quando observada sob a perspectiva dos sistemas colaborativos, especialmente porque a experiência proposta pelo jogo depende da coordenação entre mecanismos de navegação, pistas sonoras e a interpretação ativa do jogador. Embora \textit{The Vale} seja estruturado como uma campanha para um único jogador, sua lógica sensorial e suas demandas cognitivas dialogam diretamente com conceitos centrais do \textit{Computer-Supported Cooperative Work} (CSCW). Nesse contexto, o jogador precisa articular suas ações com um sistema que atua como parceiro informacional, mediando fluxo, pistas, obstáculos e objetivos. Assim, a cooperação não ocorre entre múltiplos participantes, mas entre jogador e sistema, em uma dinâmica na qual a clareza informacional é determinante para a experiência.
+Estudos recentes indicam que a incorporação de recursos como leitores de tela, pistas sonoras espacializadas, descrições narradas e comandos simplificados pode ampliar significativamente a usabilidade e a inclusão em jogos digitais \cite{aguado2020accessibility}. Mais do que possibilitar o acesso inicial ao sistema, tais mecanismos favorecem a compreensão do ambiente, a execução de tarefas e a permanência do jogador em situações que exigem tomada de decisão contínua.
 
-O conceito de \textit{groupware} também se mostra relevante ao considerar que muitos mecanismos do jogo funcionam como ferramentas colaborativas projetadas para sustentar a tomada de decisão guiada pelo som. Elementos como a espacialização sonora, os sinais contextuais que indicam direção e distância de inimigos, e o guia narrativo que fornece instruções em tempo real atuam como módulos cooperativos que ampliam a percepção ambiental. Embora tais recursos não constituam um ambiente colaborativo clássico entre múltiplos usuários, eles servem como infraestrutura que possibilita a navegação e a construção de um espaço mental acessível para jogadores cegos ou com baixa visão.
+Nessa perspectiva, a acessibilidade deixa de ser entendida apenas como adaptação complementar e passa a atuar como elemento central da interação. Em contextos de jogo, isso significa que recursos acessíveis não apenas removem limitações perceptivas, mas também promovem autonomia, previsibilidade e confiança durante a atividade, influenciando diretamente a qualidade da experiência do jogador \cite{holloway2019disability}.
 
-A noção de \textit{awareness}, entendida como consciência situacional, assume papel central em \textit{The Vale}, uma vez que toda a composição espacial do jogo é transmitida exclusivamente por áudio. A manutenção dessa consciência depende da precisão das pistas sonoras fornecidas pelo sistema, permitindo ao jogador acompanhar ações, intenções e mudanças no ambiente. Quando a trilha informacional é consistente, preserva-se a autonomia e o senso de presença; quando falha, surgem dificuldades semelhantes às observadas em sistemas colaborativos nos quais o \textit{awareness} é insuficiente.
+\section{Experiência Auditiva em Ambientes Colaborativos}
 
-A \textit{coordenação} entre jogador e sistema se manifesta tanto na navegação quanto nos combates. O jogo precisa modular o ritmo dos eventos para que a experiência se mantenha compreensível e fluida. A sincronização entre feedback auditivo, tempo de resposta, intensidade dos sons e complexidade das interações atua como um mecanismo de coordenação colaborativa: ambos, jogador e sistema, dependem de um fluxo equilibrado. Interferências, sobreposição sonora ou lacunas informacionais podem romper essa coordenação e comprometer a interação.
+A análise da acessibilidade em jogos auditivos pode ser ampliada ao considerar situações em que a progressão da atividade depende da coordenação entre mecanismos de navegação, pistas sonoras e interpretação contínua do jogador, característica recorrente em experiências orientadas exclusivamente por áudio \cite{10.1145/1067343.1067361}. Embora essas experiências não sejam ambientes colaborativos tradicionais entre múltiplos usuários, sua dinâmica interativa apresenta características de interação mediada, nas quais o sistema atua como suporte informacional para a continuidade da tarefa \cite{BANNON1995205}.
 
-Ao relacionar esses conceitos ao design de \textit{The Vale}, torna-se possível compreender como o jogo constrói sua proposta de acessibilidade não apenas por meio de tecnologias assistivas, mas também a partir de princípios derivados dos sistemas colaborativos, aplicados à experiência auditiva e narrativa. Esse enquadramento contribui para interpretar avaliações de jogadores e identificar aspectos que favorecem ou prejudicam a inclusão na prática.
+Nesse contexto, sinais auditivos, instruções contextuais e retornos temporais favorecem a orientação, a tomada de decisão e a construção de awareness, funcionando como mediadores da percepção espacial e da compreensão situacional. A consistência dessas informações influencia diretamente a fluidez, a imersão e o engajamento durante a atividade de jogo \cite{10.1145/1077246.1077253}.
 
+Nesse sentido, \textit{The Vale: Shadow of the Crown} \cite{TheVale2021} representa um caso relevante para análise, pois a navegação, o combate e a progressão narrativa dependem integralmente de pistas sonoras e respostas auditivas emitidas pelo sistema. Assim, os recursos de acessibilidade atuam não apenas como tecnologias assistivas, mas também como elementos centrais para a experiência de jogo. A Figura~\ref{fig:situacoes-uso} ilustra a gameplay do jogo.
+
+\begin{figure}[h]
+     \centering
+     \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Captura de Tela 2026-04-25 às 14.13.04.png}
+         \label{fig:situacao1}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.32\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Captura de Tela 2026-04-25 às 14.12.36.png}
+         \label{fig:situacao2}
+     \end{subfigure}
+     \caption{Gameplay do jogo \textit{The Vale: Shadow of the Crown} (Fonte: Steam)}
+     \label{fig:situacoes-uso}
+\end{figure}
+
+
+\section{Trabalhos Relacionados}
+
+A literatura sobre acessibilidade em jogos digitais para pessoas com deficiência visual tem avançado em três frentes principais: a compreensão de experiências orientadas por áudio, a consolidação de recursos inclusivos voltados à redução de barreiras de interação e a investigação das percepções de jogadores diante de desafios práticos de uso. Em conjunto, esses estudos demonstram que a substituição de elementos visuais por mecanismos sonoros pode ampliar autonomia, navegação e engajamento, ao mesmo tempo em que aponta limitações relacionadas à clareza informacional e à carga cognitiva.
+
+No campo das experiências auditivas, \cite{10.1145/1067343.1067361} discutem os chamados \textit{audio games}, nos quais a navegação e a progressão dependem integralmente de pistas sonoras e interpretação auditiva contínua. Os autores argumentam que, nesse tipo de jogo, o som deixa de atuar como elemento complementar e passa a constituir a principal camada informacional da interface, sendo responsável por orientação espacial, localização de eventos e tomada de decisão em tempo real.
+
+Em complemento, \cite{agrimi2024game} apresentam uma revisão abrangente sobre acessibilidade em jogos para pessoas com deficiência visual, destacando recursos como áudio espacial, descrições narradas, feedback multimodal e simplificação de menus como estratégias recorrentes para redução de barreiras. Os autores observam, contudo, que muitos jogos ainda implementam tais mecanismos de forma parcial, o que limita a continuidade da experiência acessível e a compreensão situacional do usuário.
+
+Já \cite{ran2025users} investigam como jogadores cegos ou com baixa visão interagem com jogos digitais contemporâneos, identificando barreiras recorrentes em menus, ações temporizadas e inconsistências no feedback auditivo, além de estratégias adotadas para compensar falhas de interface. O estudo indica que a experiência acessível depende não apenas da presença de recursos sonoros, mas da consistência entre orientação, resposta do sistema e previsibilidade das ações ao longo do jogo.
+
+Em \cite{sbgames}, é apresentado um estudo sobre acessibilidade em jogos, revisando a produção científica sobre acessibilidade em jogos digitais no SBGames (2004--2024) e analisando quase três mil artigos. O objetivo foi identificar tendências e aspectos ainda pouco explorados na inclusão de pessoas com deficiência e idosos no entretenimento digital. Os resultados mostraram crescimento do interesse no tema, mas com foco predominante em deficiências visuais, motoras e auditivas, enquanto a acessibilidade cognitiva ainda é pouco explorada. O estudo também aborda o avanço de tecnologias assistivas, como controles alternativos e audiogames, e destaca a importância de integrar a acessibilidade desde o início do design. Por fim, reforça a necessidade de padronização e de políticas que promovam jogos mais inclusivos.
+
+
+Embora esses trabalhos avancem na compreensão das tecnologias acessíveis, das barreiras enfrentadas por jogadores e das características dos jogos guiados por áudio, a literatura ainda apresenta poucas análises voltadas a jogos comerciais já disponibilizados ao público e à recepção espontânea de usuários em ambientes reais de uso. A Tabela~\ref{tab:relacionados} apresenta a comparação com os principais pontos (Foco, Contribuição e Diferencial) dos trabalhos relacionados.
+
+\begin{table*}[ht]
+\centering
+\caption{Comparação entre os trabalhos relacionados e a presente pesquisa.}
+\label{tab:relacionados}
+
+\renewcommand{\arraystretch}{1.3}
+\footnotesize
+
+\begin{tabular}{p{2.7cm} p{2.1cm} p{4.8cm} p{3.9cm}}
+\hline
+\textbf{Estudo} & \textbf{Foco} & \textbf{Contribuição} & \textbf{Diferencial} \\
+\hline
+
+Friberg e Gärdenfors (2004)
+& \textit{Audio games}
+& Define jogos guiados por áudio e o papel do som na navegação.
+& Não avalia usuários em contexto real. \\
+
+Agrimi et al. (2024)
+& Acessibilidade
+& Revisa recursos como áudio espacial, narração e feedback multimodal.
+& Não analisa jogos específicos. \\
+
+Ran et al. (2025)
+& Experiência de uso
+& Identifica barreiras em menus, ações temporizadas e feedback auditivo.
+& Não aborda aspectos de \textit{awareness}. \\
+
+Mota e Duarte (2025)
+& Revisão da área
+& Apresenta tendências e lacunas em acessibilidade para jogos.
+& Não investiga jogos comerciais. \\
+
+\textbf{Presente pesquisa}
+& \textit{The Vale}
+& Analisa comentários espontâneos sobre acessibilidade auditiva.
+& Foca em coordenação e \textit{awareness} em contexto real de uso. \\
+
+\hline
+\end{tabular}
+\end{table*}
+
+Os trabalhos relacionados contribuem para a compreensão de recursos de acessibilidade, experiências de jogadores com deficiência visual e interações em jogos baseados em áudio. Friberg e Gärdenfors (2004) fundamentam o conceito de \textit{audio games}, Agrimi et al. (2024) consolidam estratégias de acessibilidade, Ran et al. (2025) investigam barreiras enfrentadas por jogadores cegos ou com baixa visão, e Mota e Duarte (2025) discutem tendências e lacunas da área. Diferentemente desses estudos, a presente pesquisa analisa comentários espontâneos de usuários sobre um jogo comercial em contexto real de uso, investigando como a acessibilidade auditiva influencia a coordenação entre jogador e sistema e a construção de \textit{awareness}.
+
+
+A literatura converge em três eixos principais: experiências orientadas por áudio, estratégias de acessibilidade e redução de barreiras, e percepções de usuários diante de desafios de interação. Diante desse cenário, o presente estudo diferencia-se por analisar comentários públicos de usuários sobre \textit{The Vale: Shadow of the Crown} em contexto real de uso, buscando compreender como mecanismos de acessibilidade auditiva influenciam a coordenação, o \textit{awareness} e a experiência do usuário sob a perspectiva da interação colaborativa entre jogador e sistema.
 
 
 \section{Metodologia}
 
-Para avaliar a percepção dos usuários sobre \textit{The Vale}, foi conduzida uma análise quantitativa de 295 comentários, coletados na plataforma Steam. O processo, realizado em Python com as bibliotecas \textit{pandas} e \textit{NLTK}, seguiu três etapas: (1) pré-processamento dos textos para limpeza e normalização; (2) análise de frequência de palavras para identificar os tópicos mais discutidos; e (3) análise de sentimentos com o método VADER para quantificar a polaridade emocional das avaliações.
+Este trabalho utiliza uma abordagem qualitativa, de caráter exploratório e descritivo, com foco na análise da usabilidade e da acessibilidade percebidas em um jogo digital acessível sob a perspectiva de sistemas colaborativos. Para isso, foram  analisados dados secundários, provenientes de comentários públicos de jogadores sobre o jogo \textit{The Vale: Shadow of the Crown}. A Figura \ref{fig:percurso_metodologico} apresenta o percurso metodológico da pesquisa, desde a definição da abordagem até a interpretação dos resultados.
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=0.65\linewidth]{Figuras/percursometodologico.jpeg}
+ \caption{Percurso metodológico.}
+\label{fig:percurso_metodologico}
+\end{figure}
+
+O objeto de estudo é \textit{The Vale: Shadow of the Crown}, um jogo projetado para pessoas com deficiência visual total ou com baixa visão, cuja interação ocorre por meio de áudio espacial, narração e pistas sonoras. Os dados foram coletados na plataforma Steam, escolhida por reunir avaliações espontâneas de usuários e metadados relevantes, como tempo de jogo e recomendação.
+
+A coleta consistiu em um levantamento manual de 295 comentários públicos disponíveis na página oficial do jogo. Foram selecionadas avaliações relacionadas à acessibilidade, navegação, orientação espacial, autonomia e experiência de uso mediada por áudio, enquanto comentários técnicos, genéricos ou sem relação com esses aspectos foram excluídos da análise.
+
+Os relatos foram tratados como dados qualitativos de experiência de uso, sendo analisados a partir de seu conteúdo textual e do contexto geral de cada avaliação. Não foi realizada classificação por severidade de problemas, uma vez que o objetivo da pesquisa não foi mensurar desempenho ou frequência de falhas, mas compreender percepções, significados e experiências subjetivas associadas à interação jogador-sistema.
+
+A análise dos dados foi conduzida por meio de Análise Temática Qualitativa, conforme o modelo proposto por Braun e Clarke \cite{terry2017thematic}. O processo incluiu as etapas de familiarização com os dados, geração de códigos iniciais, identificação e revisão de temas recorrentes e, por fim, a definição e organização interpretativa dos resultados. Os temas emergentes foram posteriormente relacionados a conceitos de sistemas colaborativos, como \textit{awareness}, coordenação e comunicação, permitindo interpretar a interação jogador--sistema como uma forma de colaboração mediada por áudio. Essa abordagem metodológica possibilitou compreender como a acessibilidade e a usabilidade de \textit{The Vale: Shadow of the Crown} são percebidas em contextos reais de uso, contribuindo para a discussão sobre o design de jogos acessíveis sob uma perspectiva colaborativa.
+
+Por fim, é importante destacar que, embora esta pesquisa não envolva diretamente a participação de seres humanos, foram observados os preceitos éticos estabelecidos pela Resolução nº 510/2016 do Conselho Nacional de Saúde (CNS). Nesse sentido, a privacidade dos usuários foi preservada por meio da anonimização de informações sensíveis, como dados de identificação, sendo considerados para análise apenas os conteúdos dos comentários e suas respectivas datas.
 
 \section{Resultados}
 
-A análise dos dados revelou um panorama claro sobre a experiência do jogador.
+A base de dados analisada foi composta por 295 comentários públicos de jogadores sobre \textit{The Vale: Shadow of the Crown}, coletados na plataforma Steam. Esses comentários incluem informações como horas jogadas, idioma, texto da avaliação, indicação de recomendação, votos de utilidade e data de publicação, correspondendo a avaliações espontâneas do jogo.
 
-\subsection{Tópicos de Discussão na Comunidade}
+Do total de 295 comentários coletados, 294 continham relato textual relevante e foram considerados na análise qualitativa. Uma avaliação foi desconsiderada por não apresentar conteúdo textual interpretável, sendo utilizada apenas para fins descritivos. Assim, os resultados qualitativos apresentados nesta seção baseiam-se exclusivamente nas 294 reviews textuais válidas, que expressam percepções relacionadas à acessibilidade, à interação auditiva, à usabilidade e à experiência emocional do jogo. Em termos quantitativos, observou-se uma taxa muito elevada de recomendação: 97,96\% dos comentários classificaram o jogo positivamente, indicando ampla aceitação da proposta auditiva e acessível. O número médio de votos de utilidade por review foi de 8,23, com valores extremos de até 691 votos, sugerindo que relatos relacionados à acessibilidade e à experiência de jogadores cegos ou com baixa visão foram especialmente valorizados pela comunidade. As horas jogadas apresentaram grande variabilidade, entre 5 e 14.252 minutos, com média aproximada de 668 minutos. Esse intervalo indica a presença tanto de avaliações baseadas em primeiras impressões quanto de análises provenientes de jogadores com envolvimento prolongado, que tendem a relatar maior domínio das mecânicas auditivas e da navegação espacial.
 
-A análise de frequência indicou que as discussões se concentram nos elementos centrais da experiência. Os termos mais recorrentes foram: \textit{game} (jogo), \textit{story} (história), \textit{experience} (experiência), \textit{sound} (som), \textit{combat} (combate), \textit{audio} (áudio), \textit{blind} (cego) e \textit{play} (jogar). Essa concentração demonstra que os jogadores estão primariamente engajados com a mecânica de acessibilidade auditiva e a narrativa, validando o foco do design do jogo.
+Do ponto de vista da acessibilidade, os comentários destacam de forma recorrente que o jogo é plenamente utilizável sem suporte visual, desde os menus iniciais até o final da campanha. Relatos como “t\textit{he game could be played with the monitor turned off as every element of the menus is spoken}”, “\textit{all menus are read out loud}” e “\textit{no need to use your eyes}, \textit{just your ears}” evidenciam a consistência do suporte auditivo ao longo de toda a experiência. Além disso, os jogadores enfatizam aspectos como autonomia e independência, particularmente ao descreverem a navegação e interação como intuitivas e completamente mediadas por áudio. Tais características apontam para uma significativa redução de barreiras de acesso, alinhando-se diretamente a princípios clássicos de experiência do usuário, como controle, previsibilidade e transparência da interação. A Tabela~\ref{tabelaInteracoesColaborativas} sintetiza como as interações relatadas pelos jogadores se relacionam a conceitos de sistemas colaborativos e dimensões de UX. Destaca-se a navegação por áudio, na qual coexistem percepções de orientação eficiente e relatos de maior esforço cognitivo, evidenciando a relação entre \textit{awareness} e carga cognitiva durante a interação.
 
-\subsection{Percepção Emocional e Recomendação}
 
-A análise de sentimentos revelou uma recepção majoritariamente positiva, com um score médio de sentimento de +0.67 em uma escala de -1 a +1. Há uma forte correlação entre o sentimento e a ação de recomendar o jogo: avaliações marcadas como "Recomendado" apresentaram um score médio de +0.69, enquanto as "Não Recomendado" tiveram uma média de -0.25. Essa disparidade confirma que a métrica de sentimento captura eficazmente a satisfação ou insatisfação do jogador.
+\begin{table}[H]
+\centering
+\caption{Interações em \textit{The Vale: Shadow of the Crown} relacionadas a conceitos de sistemas colaborativos}
+\label{tabelaInteracoesColaborativas}
+\footnotesize
+\setlength{\tabcolsep}{4pt} % reduz espaço horizontal entre colunas
+\renewcommand{\arraystretch}{1.1} % reduz espaçamento entre linhas
+
+\begin{tabular}{|p{2.2cm}|p{2.6cm}|p{2.5cm}|p{2.5cm}|p{3.6cm}|}
+\hline
+\textbf{Interação no jogo} &
+\textbf{Percepção nos reviews} &
+\textbf{Aspectos Colaborativos} &
+\textbf{Efeitos nos jogadores} &
+\textbf{Comentários dos jogadores} \\
+\hline
+
+Navegação espacial por áudio &
+Relatos de facilidade ou dificuldade em mapear áreas apenas pelo som. &
+\textit{Awareness} do ambiente; construção de espaço compartilhado. &
+Imersão quando as pistas são claras; cansaço quando exigem esforço. &
+“navigate the world purely based on sound”; “couldn’t learn the layout of the areas”; “distinctive noise in each location”. \\
+\hline
+
+Combate guiado por áudio &
+Combate descrito como preciso, porém desafiador em algumas situações. &
+Coordenação temporal jogador--sistema; carga cognitiva. &
+Fluidez quando bem calibrado; frustração com sobreposição sonora. &
+“reacting to acoustic clues”; “combat is fun but challenging”; “blocking sometimes fails”; “directional sound to attack and defend”. \\
+\hline
+
+Menus e fluxo acessíveis &
+Jogo jogável do primeiro menu ao fim sem apoio visual. &
+Suporte contínuo à cooperação humano--sistema. &
+Maior autonomia e inclusão. &
+“100\% accessible from the first menu”; “all menus are voiced”; “fully accessible for visually impaired players”. \\
+\hline
+
+Narração e pistas contextuais &
+Elogios à dublagem, narrativa e instruções sonoras. &
+Comunicação mediada; compartilhamento de contexto. &
+Maior engajamento narrativo. &
+“story is spectacular”; “dialogue feels organic and intimate”; “excellent voice acting”; “engaged with the story and characters”. \\
+\hline
+
+Ritmo e duração das sessões &
+Relatos de pausas frequentes e alta concentração. &
+Coordenação de ritmo de atividade. &
+Sessões mais curtas, experiência intensa. &
+“had to pause after 30 minutes”; “mentally tiring”; “didn’t want it to end”. \\
+\hline
+
+Cegos x videntes &
+Diferenças entre jogadores cegos e videntes. &
+Distribuição de competências no sistema. &
+Redefinição de vantagens em favor de jogadores cegos. &
+“I’m severely blind and loved it”; “my blind daughter was fully engaged”; “sighted players struggled more”. \\
+\hline
+
+Engajamento emocional &
+Relatos de forte envolvimento emocional. &
+Coesão e motivação. &
+Sentimento de pertencimento e imersão. &
+“incredible experience”; “didn’t want to stop playing”; “I even teared up”. \\
+\hline
+
+Limitações de conteúdo &
+Críticas à curta duração. &
+Escalabilidade do sistema colaborativo. &
+Boa recepção, mas com pedido de expansão. &
+“the game is a little short”; “wanted more side quests”; “more content would be nice”. \\
+\hline
+
+\end{tabular}
+\end{table}
+
+
+De forma semelhante, o combate guiado por áudio apresenta avaliações predominantemente positivas quanto à sua precisão e responsividade, sendo descrito por jogadores como baseado em \textit{“reacting to the acoustic clues the enemies make}” e no uso de “\textit{directional sound to direct you to attack and block}”. Tais relatos indicam uma coordenação eficaz entre jogador e sistema quando as pistas sonoras são corretamente interpretadas. No entanto, emergem também críticas relacionadas à sobreposição de estímulos sonoros e à complexidade em situações com múltiplos inimigos, evidenciadas por comentários como “\textit{it gets confusing at times}” e pela necessidade de “\textit{face multiple enemies at once; headphones absolutely necessary”}. Além disso, alguns jogadores destacam o aumento da carga cognitiva, apontando que “\textit{the additional mental load… was tiring}”. Esses contrastes evidenciam desafios de design associados à gestão da atenção e ao equilíbrio entre imersão e esforço cognitivo, especialmente no que se refere à coordenação temporal entre percepção auditiva e ação.
+
+%Por fim, embora a acessibilidade e a usabilidade sejam amplamente elogiadas, surgem críticas quanto à duração da campanha e à limitação de conteúdos adicionais. Esses apontamentos não comprometem a experiência acessível, mas indicam oportunidades de expansão da experiência mantendo os princípios de clareza sonora, coordenação e comunicação.
+
+Por fim, embora a acessibilidade e a usabilidade sejam amplamente elogiadas ao longo dos comentários, surgem críticas recorrentes quanto à duração da campanha e à limitação de conteúdos adicionais. Expressões como “\textit{the game is a little short}”, “\textit{I would have liked more}” e “\textit{wanted more side quests, more characters, more everything}” indicam uma percepção de escopo reduzido por parte dos jogadores. Ainda assim, tais críticas são frequentemente acompanhadas de avaliações positivas da experiência geral, como em “\textit{I didn’t want it to end}” e “\textit{left me wanting more (in a good way})”, sugerindo que o engajamento emocional permanece elevado. Esses apontamentos não comprometem a qualidade da experiência acessível, mas evidenciam oportunidades de expansão do conteúdo, mantendo os princípios já consolidados de clareza sonora, coordenação e comunicação no design do jogo.
 
 \section{Discussão}
 
-Os resultados reforçam o framework teórico de sistemas colaborativos aplicado a \textit{The Vale}. A alta frequência de termos como \textit{sound}, \textit{audio} e \textit{combat}, associada a um sentimento predominantemente positivo, sugere que a "colaboração" entre o jogador e o sistema de \textit{feedback} auditivo foi bem-sucedida. O design sonoro eficaz parece garantir o \textit{awareness} situacional e a \textit{coordenação} necessária para a ação, gerando uma experiência imersiva e satisfatória.
+Os resultados indicam que \textit{The Vale: Shadow of the Crown} materializa, na prática, princípios de sistemas colaborativos ao estruturar a relação jogador–sistema como uma cooperação contínua mediada exclusivamente por áudio. Essa cooperação é evidenciada nos comentários de jogadores que descrevem o sistema como “guiando constantemente as ações” ou “funcionando como um companheiro que informa o que está acontecendo ao redor”. Tais relatos reforçam a interpretação do jogo como um ambiente no qual o sistema assume o papel de parceiro informacional, oferecendo contexto, ritmo e feedback necessários para a tomada de decisão.
 
-Por outro lado, a existência de avaliações com sentimento fortemente negativo, embora minoritárias, aponta para rupturas nessa colaboração. Essas falhas podem ser atribuídas a momentos de sobrecarga informacional ou inconsistências no \textit{feedback} auditivo, que, conforme a teoria de CSCW, podem levar à frustração. Adicionalmente, a análise dos "votos úteis" (com média de 8.24 e máximo de 691) revela uma camada de cooperação explícita entre os jogadores na plataforma, que trabalham coletivamente para aumentar a visibilidade de críticas informativas.
+A síntese apresentada na Tabela~\ref{tabelaInteracoesColaborativas} mostra que diferentes camadas da experiência, navegação, combate, uso de menus, narração e ritmo de jogo, operam como mecanismos de coordenação e \textit{awareness}, conceitos centrais em sistemas colaborativos. Comentários que mencionam a facilidade de “criar um mapa mental do espaço apenas pelo som” indicam que a consciência situacional é sustentada de forma eficaz quando as pistas sonoras são claras e consistentes. Em contraste, relatos que apontam confusão em cenários com múltiplas fontes sonoras revelam momentos em que a coordenação jogador–sistema se fragiliza, resultando em aumento de carga cognitiva.
 
-\section{Conclusão}
+Esse contraste é visível nas avaliações sobre o combate. Enquanto alguns jogadores descrevem a mecânica como “precisa” e “justa”, outros relatam dificuldades em distinguir ataques simultâneos, o que compromete a coordenação temporal entre ação e feedback. Do ponto de vista da colaboração, esses episódios indicam falhas pontuais na sincronização entre sistema e jogador, semelhantes às observadas em ambientes colaborativos nos quais o fluxo de informação não acompanha o ritmo das ações dos participantes. Comentários como “\textit{it gets confusing at times}”, “\textit{blocking… often lets the first attack go through}” e “\textit{the additional mental load… was tiring}” reforçam essa leitura ao evidenciar situações em que a quantidade ou a simultaneidade de estímulos sonoros compromete a coordenação entre percepção e resposta. Ainda assim, esses atritos não invalidam a experiência colaborativa, mas apontam para desafios de orquestração da atenção em sistemas baseados exclusivamente em áudio, nos quais a precisão da informação depende diretamente da capacidade do sistema de manter a legibilidade em cenários de maior complexidade interativa.
 
-Este trabalho analisou avaliações de usuários do jogo \textit{The Vale: Shadow of the Crown} para investigar a percepção de sua acessibilidade sob a ótica dos sistemas colaborativos. A análise quantitativa demonstrou que a experiência, centrada em mecânicas auditivas, foi recebida de forma majoritariamente positiva. Os sentimentos expressos se correlacionam fortemente com a recomendação do jogo, indicando que a colaboração bem-sucedida entre jogador e sistema é um fator crítico para a satisfação. O estudo contribui ao aplicar conceitos de CSCW para interpretar dados de uso real, validando que princípios de \textit{awareness} e \textit{coordenação} são fundamentais em jogos baseados em áudio.
+Outro aspecto diz respeito à redistribuição de vantagens entre jogadores cegos e videntes. Comentários de jogadores cegos frequentemente relatam uma experiência “natural” e “fluida”, enquanto jogadores videntes mencionam esforço inicial para se adaptar à ausência de referências visuais. Esse contraste evidencia uma inversão da hierarquia tradicional presente em jogos convencionais e reforça o caráter inclusivo do design. Sob a ótica da colaboração, o jogo redefine competências e papéis, favorecendo aqueles cuja percepção auditiva é mais desenvolvida, o que amplia a discussão sobre equidade em sistemas colaborativos digitais.
 
-\section{References}
+Além disso, os comentários que expressam forte envolvimento emocional, como o desejo por continuações ou a valorização do jogo como uma experiência “única” para pessoas com deficiência visual, indicam que a cooperação jogador–sistema não se limita a aspectos funcionais. Ela também sustenta coesão e engajamento afetivo, elementos fundamentais para a manutenção de atividades colaborativas ao longo do tempo. Por outro lado, críticas relacionadas à curta duração da campanha sugerem limites na escalabilidade desse ambiente colaborativo, apontando oportunidades para expansão do conteúdo sem comprometer a clareza informacional.
 
+A discussão evidencia que \textit{The Vale: Shadow of the Crown} não apenas implementa recursos de acessibilidade, mas constrói uma experiência colaborativa consistente, na qual comunicação, coordenação e \textit{awareness} são continuamente negociadas entre jogador e sistema. Comentários que destacam a possibilidade de jogar \textit{“with no need to use your eyes, just your ears}” coexistem com relatos sobre momentos em que “\textit{it gets confusing at time}s” ou em que a experiência se torna “\textit{mentally tiring}”, revelando as tensões inerentes à mediação exclusivamente sonora. Esses contrastes reforçam que o sucesso do jogo reside no equilíbrio entre clareza das pistas auditivas e complexidade interativa, permitindo tanto a imersão quanto o desafio. Ao mesmo tempo, avaliações que combinam elogios à experiência com observações como “\textit{I would have liked more}” indicam que há espaço para expansão sem comprometer os princípios já estabelecidos. Assim, o jogo oferece subsídios para o design de futuros jogos colaborativos acessíveis, especialmente no que diz respeito à articulação entre acessibilidade, engajamento e gestão da carga cognitiva.
+
+
+\section{Limitações e Ameaças à Validade}
+
+Este estudo apresenta limitações e ameaças à validade. Os dados analisados provêm exclusivamente de comentários públicos da plataforma Steam, o que implica viés de auto-seleção, uma vez que tendem a participar usuários mais engajados ou motivados a relatar suas experiências. Além disso, não foi possível verificar diretamente o perfil dos jogadores quanto ao tipo ou grau de deficiência visual, baseando-se apenas em autorrelatos presentes nas avaliações. A utilização apenas de comentários públicos também limita a compreensão mais aprofundada da experiência dos jogadores, uma vez que não foram realizadas entrevistas ou outras formas de coleta de dados que permitissem complementar as informações obtidas. A análise qualitativa também envolve interpretação dos pesquisadores, o que pode introduzir subjetividade, mitigada pelo uso sistemático da Análise Temática.
+
+\section{Considerações Finais}
+
+Este trabalho investigou a acessibilidade e a usabilidade em jogos digitais sob a perspectiva de sistemas colaborativos, tomando como estudo de caso o jogo auditivo \textit{The Vale: Shadow of the Crown}. Em contraste com os trabalhos relacionados\cite{10.1145/1067343.1067361,agrimi2024game,ran2025users,sbgames}, que em sua maioria se concentram no desenvolvimento de protótipos, em contextos educacionais ou em estudos controlados com usuários, esta pesquisa analisou a experiência, a partir de avaliações espontâneas de jogadores. Essa abordagem permitiu observar como princípios de acessibilidade e colaboração se manifestam na prática, em um ambiente real de uso e com diversidade de perfis de jogadores.
+
+A análise dos comentários revelou que \textit{The Vale: Shadow of the Crown} articula de forma consistente usabilidade, acessibilidade auditiva e engajamento emocional, estruturando a interação jogador–sistema como uma cooperação contínua mediada por áudio. Conceitos centrais de sistemas colaborativos, como \textit{awareness}, coordenação e comunicação mediada, emergiram de forma recorrente nos relatos, especialmente em aspectos como navegação espacial, combate guiado por som e uso integral de menus acessíveis. A alta taxa de recomendação e o reconhecimento explícito da acessibilidade por jogadores cegos e seus familiares reforçam o impacto positivo do design adotado.
+
+Como principais contribuições, o estudo oferece (i) uma análise empírica da acessibilidade em um jogo auditivo comercial a partir da percepção de usuários reais; (ii) uma interpretação da experiência de jogo sob a ótica de sistemas colaborativos, destacando o papel do sistema como parceiro informacional; e (iii) evidências de que jogos acessíveis podem promover inclusão e engajamento emocional sem recorrer a elementos visuais tradicionais. Esses resultados ampliam a discussão sobre acessibilidade para além de soluções técnicas isoladas, integrando-a a princípios de colaboração e experiência do usuário. Além disso, algumas lições aprendidas emergem da análise: 
+
+\begin{itemize}
+    \item A clareza e a consistência das pistas sonoras são fundamentais para sustentar a coordenação e a consciência situacional ao longo da experiência.
+    \item A acessibilidade plena, desde os menus iniciais até o término da campanha, fortalece a autonomia e a confiança do jogador no sistema.
+    \item O áudio não apenas substitui o suporte visual, mas também reconfigura hierarquias tradicionalmente estabelecidas entre jogadores cegos e videntes. Essa reconfiguração contribui para a promoção de formas mais equitativas de interação.
+\end{itemize}
+
+Como trabalhos futuros, sugere-se a ampliação do estudo para outras plataformas e jogos acessíveis, bem como a combinação de análises de reviews com estudos observacionais ou entrevistas com jogadores cegos e com baixa visão. Também se destaca a oportunidade de investigar como os princípios identificados neste trabalho podem ser aplicados a outros gêneros de jogos e a experiências colaborativas multiusuário. Nesse sentido, \textit{The Vale: Shadow of the Crown} se consolida não apenas como um produto acessível, mas como uma referência conceitual para o design de jogos colaborativos inclusivos.
+
+\section*{Declaração do uso de Inteligencia Artificial}
+Este trabalho contou com o suporte de ferramentas de Inteligência Artificial (IA) Generativa para a estruturação de resumo, abstract, padronização e refinamento linguístico (gramática, ortografia e sintaxe).
+}
 \bibliographystyle{sbc}
-\bibliography{sbc-template}
+\bibliography{Referencias/referencias}
 
 \end{document}
