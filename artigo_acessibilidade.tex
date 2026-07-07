@@ -21,11 +21,11 @@
 \usepackage[utf8]{inputenc} % Codificação UTF-8 (necessário apenas para pdflatex)
 \usepackage{multicol}
 \usepackage{multirow}
-\usepackage{graphicx,url}
+\usepackage{graphicx}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{textcomp}
-\usepackage{url}
+\usepackage{xurl}
 \usepackage{enumerate}
 \usepackage{multirow}
 \usepackage{soul}
@@ -41,6 +41,7 @@
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[bottom]{footmisc}
 
 %previne hifenização
 \tolerance=1
@@ -210,7 +211,7 @@ Este trabalho utiliza uma abordagem qualitativa, de caráter exploratório e des
 
 O objeto de estudo é \textit{The Vale: Shadow of the Crown}, um jogo projetado para pessoas com deficiência visual total ou com baixa visão, cuja interação ocorre por meio de áudio espacial, narração e pistas sonoras. Os dados foram coletados na plataforma Steam, escolhida por reunir avaliações espontâneas de usuários e metadados relevantes, como tempo de jogo e recomendação.
 
-A coleta consistiu em um levantamento manual de 295 comentários públicos disponíveis na página oficial do jogo. Foram selecionadas avaliações relacionadas à acessibilidade, navegação, orientação espacial, autonomia e experiência de uso mediada por áudio, enquanto comentários técnicos, genéricos ou sem relação com esses aspectos foram excluídos da análise.
+A coleta consistiu em uma extração automatizada de 295 comentários públicos disponíveis na página oficial do jogo por meio de API, utilizando o script Python deste projeto. Foram selecionadas avaliações relacionadas à acessibilidade, navegação, orientação espacial, autonomia e experiência de uso mediada por áudio, enquanto comentários técnicos, genéricos ou sem relação com esses aspectos foram excluídos da análise.
 
 Os relatos foram tratados como dados qualitativos de experiência de uso, sendo analisados a partir de seu conteúdo textual e do contexto geral de cada avaliação. Não foi realizada classificação por severidade de problemas, uma vez que o objetivo da pesquisa não foi mensurar desempenho ou frequência de falhas, mas compreender percepções, significados e experiências subjetivas associadas à interação jogador-sistema.
 
@@ -220,7 +221,7 @@ Por fim, é importante destacar que, embora esta pesquisa não envolva diretamen
 
 \section{Resultados}
 
-A base de dados analisada foi composta por 295 comentários públicos de jogadores sobre \textit{The Vale: Shadow of the Crown}, coletados na plataforma Steam. Esses comentários incluem informações como horas jogadas, idioma, texto da avaliação, indicação de recomendação, votos de utilidade e data de publicação, correspondendo a avaliações espontâneas do jogo.
+A base de dados analisada foi composta por 295 comentários públicos de jogadores sobre \textit{The Vale: Shadow of the Crown}, coletados na plataforma Steam\footnote{\url{https://github.com/brenogonzagacarvalho/avalicao_the_shadow}}. Esses comentários incluem informações como horas jogadas, idioma, texto da avaliação, indicação de recomendação, votos de utilidade e data de publicação, correspondendo a avaliações espontâneas do jogo.
 
 Do total de 295 comentários coletados, 294 continham relato textual relevante e foram considerados na análise qualitativa. Uma avaliação foi desconsiderada por não apresentar conteúdo textual interpretável, sendo utilizada apenas para fins descritivos. Assim, os resultados qualitativos apresentados nesta seção baseiam-se exclusivamente nas 294 reviews textuais válidas, que expressam percepções relacionadas à acessibilidade, à interação auditiva, à usabilidade e à experiência emocional do jogo. Em termos quantitativos, observou-se uma taxa muito elevada de recomendação: 97,96\% dos comentários classificaram o jogo positivamente, indicando ampla aceitação da proposta auditiva e acessível. O número médio de votos de utilidade por review foi de 8,23, com valores extremos de até 691 votos, sugerindo que relatos relacionados à acessibilidade e à experiência de jogadores cegos ou com baixa visão foram especialmente valorizados pela comunidade. As horas jogadas apresentaram grande variabilidade, entre 5 e 14.252 minutos, com média aproximada de 668 minutos. Esse intervalo indica a presença tanto de avaliações baseadas em primeiras impressões quanto de análises provenientes de jogadores com envolvimento prolongado, que tendem a relatar maior domínio das mecânicas auditivas e da navegação espacial.
 
